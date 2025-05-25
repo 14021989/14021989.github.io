@@ -87,46 +87,6 @@
     </style>
 </head>
 <body>
-    <h1>Questionário COPSOQ II (versão média oficial)</h1>
-    
-    <form id="copsoqForm">
-        <p>Por favor, informe seu e-mail corporativo. Enviaremos um link de acesso para o questionário.</p>
-        <p>Em conformidade com a NR-17 (Ergonomia) e NR-1, seus dados serão tratados com confidencialidade.</p>
-        
-        <label for="email">E-mail corporativo:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="name">Nome completo:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="company">Empresa:</label>
-        <input type="text" id="company" name="company" required>
-        
-        <label for="department">Departamento/Setor:</label>
-        <input type="text" id="department" name="department" required>
-        
-        <label for="position">Cargo/Função:</label>
-        <input type="text" id="position" name="position" required>
-        
-        <label>
-            <input type="checkbox" id="consent" name="consent" required>
-            Concordo com o tratamento dos meus dados para fins de avaliação psicossocial, conforme a LGPD.
-        </label>
-        
-        <button type="submit">Enviar</button>
-        <div id="loader" class="loader"></div>
-    </form>
-    
-    <div id="successMessage" class="success-message">
-        <h4>E-mail enviado com sucesso!</h4>
-        <p>Verifique sua caixa de entrada e clique no link enviado para acessar o questionário.</p>
-        <p>Caso não encontre o e-mail, verifique também sua pasta de spam.</p>
-    </div>
-    
-    <div id="errorMessage" class="error-message">
-        <h4>Erro ao enviar o formulário!</h4>
-        <p id="errorText">Por favor, tente novamente ou entre em contato com o suporte.</p>
-    </div>
     
     <!-- Firebase SDK -->
     <script type="module">
