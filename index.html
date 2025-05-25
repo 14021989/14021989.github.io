@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Fatores Psicossociais - COPSOQ II (Versão Média)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .hidden {
+            display: none;
+        }
+        .email-sent-message {
+            display: none;
+            padding: 20px;
+            background-color: #d4edda;
+            border-radius: 5px;
+            margin-top: 20px;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <div class="container">
+            <h1>Avaliação de Fatores Psicossociais no Trabalho</h1>
+            <p class="lead">Questionário COPSOQ II - Versão Média (87 perguntas)</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card" id="email-validation-card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Validação de E-mail</h5>
+            </div>
+            <div class="card-body">
+                <p>Para acessar o questionário COPSOQ II (versão média oficial), por favor, informe seu e-mail corporativo. Enviaremos um link de acesso para o questionário.</p>
+                <p><small>Em conformidade com a NR-17 (Ergonomia) e NR-1, seus dados serão tratados com confidencialidade.</small></p>
+                
+                <form id="email-form">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail corporativo:</label>
+                        <input type="email" class="form-control" id="email" required placeholder="seu.nome@empresa.com.br">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome completo:</label>
+                        <input type="text" class="form-control" id="nome" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="empresa" class="form-label">Empresa:</label>
+                        <input type="text" class="form-control" id="empresa" required placeholder="Nome da empresa">
+                    </div>
+                    <div class="mb-3">
+                        <label for="departamento" class="form-label">Departamento/Setor:</label>
+                        <input type="text" class="form-control" id="departamento" placeholder="Seu departamento ou setor (opcional)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cargo" class="form-label">Cargo/Função:</label>
+                        <input type="text" class="form-control" id="cargo" placeholder="Seu cargo ou função (opcional)">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="termos" required>
+                        <label class="form-check-label" for="termos">Concordo com o tratamento dos meus dados para fins de avaliação psicossocial, conforme a LGPD.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar link de acesso</button>
+                </form>
+                
+                <div class="email-sent-message" id="email-sent-message">
+                    <h5>E-mail enviado com sucesso!</h5>
+                    <p>Verifique sua caixa de entrada e clique no link enviado para acessar o questionário.</p>
+                    <p>Caso não encontre o e-mail, verifique também sua pasta de spam.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card hidden" id="confirmation-card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">E-mail Confirmado</h5>
+            </div>
+            <div class="card-body">
+                <p>Seu e-mail foi confirmado com sucesso! Agora você pode acessar o questionário COPSOQ II (versão média oficial).</p>
+                <p><strong>Importante:</strong> O questionário contém 87 perguntas distribuídas em 28 dimensões. O tempo estimado para preenchimento é de 15-25 minutos.</p>
+                <a href="questionario_medio.html" class="btn btn-primary" id="access-questionnaire">Acessar Questionário</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>Questionário COPSOQ II - Versão Média (87 perguntas)</p>
+            <p><small>Baseado em: Kristensen, T. (2001) | Tradução e adaptação: Silva, C. et al. (2011)</small></p>
+            <p><small>Período de Coleta: 2025 | Total de Participantes: Indeterminado</small></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Em um ambiente real, aqui seria feita uma requisição para o backend
+            // para enviar o e-mail de confirmação
+            
+            // Simulação do envio de e-mail
+            document.getElementById('email-sent-message').style.display = 'block';
+            document.getElementById('email-form').style.display = 'none';
+            
+            // Em um ambiente real, o usuário clicaria no link do e-mail
+            // e seria redirecionado para uma página de confirmação
+            
+            // Para fins de demonstração, vamos simular a confirmação após 3 segundos
+            setTimeout(function() {
+                document.getElementById('email-validation-card').classList.add('hidden');
+                document.getElementById('confirmation-card').classList.remove('hidden');
+            }, 3000);
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
