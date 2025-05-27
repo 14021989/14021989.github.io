@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Detalhado - COPSOQ II Versão Média (87 perguntas)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+        .report-section {
+            margin-bottom: 3rem;
+        }
+        .dimension-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .dimension-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0d6efd;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .risk-high {
+            background-color: #ffebee;
+            border-left: 4px solid #e53935;
+        }
+        .risk-medium {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffb300;
+        }
+        .risk-low {
+            background-color: #e8f5e9;
+            border-left: 4px solid #43a047;
+        }
+        .recommendation {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .recommendation h5 {
+            color: #0d6efd;
+        }
+        .recommendation ul {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        @media print {
+            .print-btn {
+                display: none;
+            }
+            .header {
+                background-color: #fff !important;
+                color: #000 !important;
+                padding: 1rem 0 !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <div class="container">
+            <h1>Relatório Detalhado de Fatores Psicossociais</h1>
+            <p class="lead">COPSOQ II - Versão Média (87 perguntas)</p>
+        </div>
+    </div>
+
+    <!-- Filtro por Empresa -->
+    <div class="container mb-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <label for="empresa-select" class="form-label">Filtrar por Empresa:</label>
+                <select class="form-select" id="empresa-select">
+                    <option value="todas" selected>Todas as Empresas</option>
+                    <!-- Opções de empresas serão preenchidas via JavaScript -->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Informações do Relatório -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Informações do Relatório</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Instrumento:</strong> Copenhagen Psychosocial Questionnaire II (COPSOQ II)</p>
+                            <p><strong>Versão:</strong> Média - 28 dimensões e 87 perguntas</p>
+                            <p><strong>Período de Coleta:</strong> 2025</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Total de Participantes:</strong> <span id="total-participantes">Indeterminado</span></p>
+                            <p><strong>Data de Geração:</strong> <span id="data-geracao">22/05/2025</span></p>
+                            <p><strong>Conformidade:</strong> NR-17 (Ergonomia) e NR-1 (Disposições Gerais)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo Executivo -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Resumo Executivo</h5>
+                </div>
+                <div class="card-body">
+                    <p>Este relatório apresenta os resultados da avaliação de fatores psicossociais no ambiente de trabalho, realizada utilizando o Copenhagen Psychosocial Questionnaire II (COPSOQ II) em sua versão média, que compreende 87 perguntas distribuídas em 28 dimensões.</p>
+                    
+                    <p>A avaliação foi conduzida em conformidade com a NR-17 (Ergonomia) e NR-1 (Disposições Gerais), que estabelecem parâmetros para adaptação das condições de trabalho às características psicofisiológicas dos trabalhadores e para o gerenciamento de riscos ocupacionais, respectivamente.</p>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="stat-value" id="total-respostas">42</div>
+                                <div class="stat-label">Total de Respostas</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="stat-value" id="media-geral">3.7</div>
+                                <div class="stat-label">Média Geral</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="stat-value" id="dimensoes-criticas">6</div>
+                                <div class="stat-label">Dimensões Críticas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>Os resultados indicam que <span id="percentual-alto">21%</span> das dimensões avaliadas apresentam alto risco psicossocial, <span id="percentual-medio">54%</span> apresentam risco médio e <span id="percentual-baixo">25%</span> apresentam baixo risco. As dimensões com maior risco estão relacionadas principalmente a <span id="categorias-criticas">Ritmo de Trabalho, Exigências Emocionais e Comportamentos Ofensivos</span>, que requerem atenção prioritária.</p>
+                    
+                    <p>Este relatório inclui análises detalhadas por dimensão, recomendações específicas para mitigação de riscos e sugestões de ações para manutenção dos pontos fortes identificados.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visão Geral das Dimensões -->
+        <div class="report-section page-break">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Visão Geral das Dimensões</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="dimensoes-chart"></canvas>
+                    </div>
+                    <p class="mt-3">O gráfico acima apresenta a média de cada uma das 28 dimensões avaliadas pelo COPSOQ II. As cores indicam o nível de risco: vermelho para alto risco, amarelo para risco médio e verde para baixo risco.</p>
+                    <p>As dimensões estão ordenadas da maior para a menor pontuação média, permitindo identificar rapidamente as áreas que requerem atenção prioritária.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Análise por Categoria -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Análise por Categoria</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="categorias-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="riscos-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <p>O gráfico radar apresenta a média de cada categoria de dimensões avaliadas pelo COPSOQ II. As categorias são agrupamentos temáticos das 28 dimensões, permitindo uma visão mais ampla dos aspectos psicossociais.</p>
+                            <p>O gráfico de pizza apresenta a distribuição dos níveis de risco entre as 28 dimensões avaliadas, permitindo visualizar a proporção de dimensões em cada nível de risco.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dimensões Críticas -->
+        <div class="report-section page-break">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Dimensões Críticas</h5>
+                </div>
+                <div class="card-body">
+                    <p>As dimensões a seguir apresentaram os níveis mais elevados de risco psicossocial e requerem atenção prioritária:</p>
+                    <div class="row" id="dimensoes-criticas-container">
+                        <!-- Será preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recomendações Prioritárias -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Recomendações Prioritárias</h5>
+                </div>
+                <div class="card-body">
+                    <p>Com base nas dimensões críticas identificadas, recomenda-se a implementação das seguintes ações no curto prazo (1-3 meses):</p>
+                    <div id="recomendacoes-prioritarias">
+                        <!-- Será preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dimensões Intermediárias -->
+        <div class="report-section page-break">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Dimensões Intermediárias</h5>
+                </div>
+                <div class="card-body">
+                    <p>As dimensões a seguir apresentaram níveis intermediários de risco psicossocial e requerem monitoramento e ações de médio prazo:</p>
+                    <div class="row" id="dimensoes-intermediarias-container">
+                        <!-- Será preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recomendações Secundárias -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Recomendações Secundárias</h5>
+                </div>
+                <div class="card-body">
+                    <p>Com base nas dimensões intermediárias identificadas, recomenda-se a implementação das seguintes ações no médio prazo (3-6 meses):</p>
+                    <div id="recomendacoes-secundarias">
+                        <!-- Será preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dimensões Positivas -->
+        <div class="report-section page-break">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Dimensões Positivas</h5>
+                </div>
+                <div class="card-body">
+                    <p>As dimensões a seguir apresentaram os melhores resultados e representam pontos fortes da organização:</p>
+                    <div class="row" id="dimensoes-positivas-container">
+                        <!-- Será preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ações de Manutenção -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Ações de Manutenção</h5>
+                </div>
+                <div class="card-body">
+                    <p>Para preservar os pontos fortes identificados, recomenda-se a manutenção das seguintes práticas:</p>
+                    <div id="acoes-manutencao">
+                        <!-- Será preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados Detalhados -->
+        <div class="report-section page-break">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Resultados Detalhados</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="resultados-tabela">
+                            <thead>
+                                <tr>
+                                    <th>Dimensão</th>
+                                    <th>Média</th>
+                                    <th>Nível de Risco</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Será preenchido via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metodologia -->
+        <div class="report-section page-break">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Metodologia</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Instrumento</h6>
+                    <p>A avaliação dos fatores psicossociais foi realizada utilizando o Copenhagen Psychosocial Questionnaire II (COPSOQ II) em sua versão média, que compreende 28 dimensões e 87 perguntas. Este instrumento foi desenvolvido pelo National Research Centre for the Working Environment da Dinamarca e é amplamente utilizado e validado internacionalmente.</p>
+                    
+                    <h6>Coleta de Dados</h6>
+                    <p>O questionário foi aplicado online, com validação de e-mail para garantir a confidencialidade e a integridade dos dados. As perguntas foram apresentadas em sequência numérica de 1 a 87, organizadas por dimensão, facilitando o preenchimento e a análise.</p>
+                    
+                    <h6>Análise de Dados</h6>
+                    <p>As respostas foram analisadas utilizando métodos estatísticos para calcular médias por dimensão e classificar os níveis de risco. A classificação dos níveis de risco foi baseada nos tercis da população de referência, conforme estabelecido no manual do COPSOQ II versão portuguesa.</p>
+                    
+                    <h6>Níveis de Risco</h6>
+                    <p>Os níveis de risco foram classificados em três categorias:</p>
+                    <ul>
+                        <li><strong>Risco Baixo:</strong> Situação favorável, que deve ser mantida e potencializada.</li>
+                        <li><strong>Risco Médio:</strong> Situação intermediária, que requer atenção e monitoramento.</li>
+                        <li><strong>Risco Alto:</strong> Situação desfavorável, que requer intervenção prioritária.</li>
+                    </ul>
+                    
+                    <h6>Conformidade Normativa</h6>
+                    <p>A avaliação foi conduzida em conformidade com a NR-17 (Ergonomia) e NR-1 (Disposições Gerais), que estabelecem parâmetros para adaptação das condições de trabalho às características psicofisiológicas dos trabalhadores e para o gerenciamento de riscos ocupacionais, respectivamente.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusão -->
+        <div class="report-section">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Conclusão</h5>
+                </div>
+                <div class="card-body">
+                    <p>A avaliação de fatores psicossociais utilizando o COPSOQ II versão média (87 perguntas) permitiu identificar os principais riscos psicossociais presentes no ambiente de trabalho, bem como os pontos fortes da organização.</p>
+                    
+                    <p>Os resultados indicam a necessidade de ações prioritárias nas dimensões com alto risco, especialmente relacionadas a <span id="conclusao-dimensoes-criticas">Ritmo de Trabalho, Exigências Emocionais e Comportamentos Ofensivos</span>. Também foram identificadas dimensões com risco médio que requerem monitoramento e ações de médio prazo.</p>
+                    
+                    <p>Por outro lado, foram identificados pontos fortes na organização, especialmente relacionados a <span id="conclusao-dimensoes-positivas">Significado do Trabalho, Transparência do Papel Laboral e Comunidade Social no Trabalho</span>, que devem ser mantidos e potencializados.</p>
+                    
+                    <p>A implementação das recomendações apresentadas neste relatório contribuirá para a mitigação dos riscos psicossociais identificados e para a promoção de um ambiente de trabalho mais saudável e produtivo, em conformidade com as normas regulamentadoras NR-17 e NR-1.</p>
+                    
+                    <p>Recomenda-se a realização de nova avaliação após a implementação das ações recomendadas, para verificar a eficácia das intervenções e identificar novas oportunidades de melhoria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary print-btn" onclick="window.print()">Imprimir Relatório</button>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>Relatório de Avaliação de Fatores Psicossociais no Trabalho - COPSOQ II (Versão Média)</p>
+            <p><small>Baseado em: Kristensen, T. (2001) | Tradução e adaptação: Silva, C. et al. (2011)</small></p>
+            <p><small>Em conformidade com a NR-17 (Ergonomia) e NR-1</small></p>
+            <p><small>Período de Coleta: 2025 | Total de Participantes: Indeterminado</small></p>
+        </div>
+    </footer>
+
+       <!-- Scripts Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="js/firebase_config.js"></script>
+
+    <!-- Scripts Bootstrap e Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+    <!-- Script de Análise e Geração do Relatório -->
+    <script src="js/firebase_relatorio.js"></script>
+
+    <!-- Botão de Impressão (já existe acima, mas garantindo que esteja presente) -->
+    <!-- <button class="btn btn-primary print-btn" onclick="window.print()">Imprimir Relatório</button> -->                 

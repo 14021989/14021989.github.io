@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário COPSOQ II - Versão Média (87 perguntas)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        /* Removido estilo para dimension-header */
+        .question-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .form-check-input:checked {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .progress {
+            height: 10px;
+            margin-bottom: 20px;
+        }
+        .instructions {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .scale-legend {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+        .radio-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .radio-option {
+            text-align: center;
+            flex: 1;
+        }
+        .radio-option label {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .radio-options {
+                flex-direction: column;
+            }
+            .radio-option {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <div class="container">
+            <h1>Questionário COPSOQ II</h1>
+            <p class="lead">Versão Média (87 perguntas)</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Avaliação de Fatores Psicossociais no Trabalho</h5>
+            </div>
+            <div class="card-body">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progress-bar">0%</div>
+                </div>
+                
+                <div class="instructions">
+                    <h5>Instruções</h5>
+                    <p>As perguntas a seguir referem-se ao seu ambiente de trabalho e bem-estar. Por favor, responda a todas as perguntas marcando a opção que melhor reflete sua situação. Não existem respostas certas ou erradas.</p>
+                    <p>O questionário contém 87 perguntas numeradas sequencialmente de 1 a 87. O tempo estimado para preenchimento é de 15-25 minutos.</p>
+                    <p>Escala de resposta para a maioria das questões:</p>
+                    <div class="scale-legend">
+                        <span>1 - Nunca/quase nunca</span>
+                        <span>2 - Raramente</span>
+                        <span>3 - Às vezes</span>
+                        <span>4 - Frequentemente</span>
+                        <span>5 - Sempre</span>
+                    </div>
+                </div>
+                
+                <form id="copsoq-form">
+                    <!-- Dados Demográficos -->
+                    <div class="question-item">
+                        <label class="form-label required-field">Idade:</label>
+                        <select class="form-select" required name="idade">
+                            <option value="" selected disabled>Selecione sua faixa etária</option>
+                            <option value="18-25">18-25 anos</option>
+                            <option value="26-35">26-35 anos</option>
+                            <option value="36-45">36-45 anos</option>
+                            <option value="46-55">46-55 anos</option>
+                            <option value="56+">56 anos ou mais</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">Gênero:</label>
+                        <select class="form-select" required name="genero">
+                            <option value="" selected disabled>Selecione seu gênero</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                            <option value="prefiro_nao_informar">Prefiro não informar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">Tempo na empresa:</label>
+                        <select class="form-select" required name="tempo_empresa">
+                            <option value="" selected disabled>Selecione o tempo na empresa</option>
+                            <option value="menos_1">Menos de 1 ano</option>
+                            <option value="1-3">1-3 anos</option>
+                            <option value="4-6">4-6 anos</option>
+                            <option value="7-10">7-10 anos</option>
+                            <option value="mais_10">Mais de 10 anos</option>
+                        </select>
+                    </div>
+
+                    <!-- Perguntas 1 a 87 -->
+                    <div class="question-item">
+                        <label class="form-label required-field">1. A sua carga de trabalho acumula-se por ser mal distribuída?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">2. Com que frequência não tem tempo para completar todas as tarefas do seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q2" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q2" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q2" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q2" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q2" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">3. Precisa fazer horas-extra?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q3" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q3" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q3" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q3" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q3" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">4. Precisa trabalhar muito rapidamente?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q4" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q4" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q4" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q4" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q4" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">5. O seu trabalho exige a sua atenção constante?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q5" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q5" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q5" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q5" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q5" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">6. O seu trabalho requer que seja bom a propor novas ideias?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q6" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q6" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q6" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q6" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q6" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">7. O seu trabalho exige que tome decisões difíceis?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q7" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q7" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q7" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q7" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q7" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">8. O seu trabalho exige emocionalmente de si?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q8" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q8" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q8" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q8" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q8" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">9. Tem um elevado grau de influência no seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q9" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q9" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q9" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q9" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q9" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">10. Participa na escolha das pessoas com quem trabalha?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q10" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q10" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q10" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q10" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q10" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">11. Pode influenciar a quantidade de trabalho que lhe compete a si?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q11" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q11" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q11" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q11" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q11" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">12. Tem alguma influência sobre o tipo de tarefas que faz?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q12" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q12" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q12" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q12" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q12" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">13. O seu trabalho exige que tenha iniciativa?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q13" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q13" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q13" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q13" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q13" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">14. O seu trabalho permite-lhe aprender coisas novas?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q14" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q14" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q14" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q14" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q14" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">15. O seu trabalho permite-lhe usar as suas habilidades ou perícias?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q15" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q15" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q15" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q15" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q15" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">16. No seu local de trabalho, é informado com antecedência sobre decisões importantes, mudanças ou planos para o futuro?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q16" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q16" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q16" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q16" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q16" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">17. Recebe toda a informação de que necessita para fazer bem o seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q17" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q17" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q17" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q17" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q17" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">18. O seu trabalho apresenta objetivos claros?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q18" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q18" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q18" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q18" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q18" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">19. Sabe exatamente quais as suas responsabilidades?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q19" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q19" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q19" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q19" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q19" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">20. Sabe exatamente o que é esperado de si?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q20" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q20" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q20" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q20" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q20" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">21. O seu trabalho é reconhecido e apreciado pela gerência?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q21" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q21" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q21" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q21" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q21" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">22. A gerência do seu local de trabalho respeita-o?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q22" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q22" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q22" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q22" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q22" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">23. É tratado de forma justa no seu local de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q23" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q23" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q23" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q23" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q23" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">24. Faz coisas no seu trabalho que uns concordam mas outros não?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q24" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q24" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q24" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q24" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q24" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">25. Por vezes tem que fazer coisas que deveriam ser feitas de outra maneira?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q25" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q25" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q25" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q25" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q25" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">26. Por vezes tem que fazer coisas que considera desnecessárias?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q26" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q26" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q26" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q26" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q26" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">27. Com que frequência tem ajuda e apoio dos seus colegas de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q27" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q27" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q27" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q27" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q27" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">28. Com que frequência os seus colegas estão dispostos a ouvi-lo(a) sobre os seus problemas de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q28" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q28" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q28" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q28" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q28" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">29. Com que frequência os seus colegas falam consigo acerca do seu desempenho laboral?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q29" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q29" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q29" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q29" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q29" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">30. Com que frequência o seu superior imediato fala consigo sobre como está a decorrer o seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q30" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q30" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q30" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q30" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q30" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">31. Com que frequência tem ajuda e apoio do seu superior imediato?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q31" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q31" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q31" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q31" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q31" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">32. Com que frequência é que o seu superior imediato fala consigo em relação ao seu desempenho laboral?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q32" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q32" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q32" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q32" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q32" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">33. Existe um bom ambiente de trabalho entre si e os seus colegas?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q33" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q33" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q33" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q33" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q33" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">34. Existe uma boa cooperação entre os colegas de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q34" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q34" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q34" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q34" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q34" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">35. No seu local de trabalho sente-se parte de uma comunidade?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q35" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q35" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q35" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q35" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q35" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">36. Oferece aos indivíduos e ao grupo boas oportunidades de desenvolvimento?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q36" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q36" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q36" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q36" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q36" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">37. Dá prioridade à satisfação no trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q37" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q37" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q37" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q37" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q37" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">38. É bom no planeamento do trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q38" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q38" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q38" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q38" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q38" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">39. É bom a resolver conflitos?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q39" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q39" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q39" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q39" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q39" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">40. Os funcionários ocultam informações uns dos outros?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q40" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q40" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q40" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q40" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q40" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">41. Os funcionários ocultam informação à gerência?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q41" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q41" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q41" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q41" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q41" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">42. Os funcionários confiam uns nos outros de um modo geral?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q42" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q42" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q42" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q42" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q42" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">43. A gerência confia nos seus funcionários para fazerem o seu trabalho bem?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q43" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q43" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q43" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q43" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q43" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">44. Confia na informação que lhe é transmitida pela gerência?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q44" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q44" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q44" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q44" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q44" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">45. A gerência oculta informação aos seus funcionários?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q45" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q45" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q45" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q45" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q45" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">46. Os conflitos são resolvidos de uma forma justa?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q46" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q46" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q46" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q46" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q46" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">47. As sugestões dos funcionários são tratadas de forma séria pela gerência?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q47" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q47" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q47" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q47" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q47" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">48. O trabalho é igualmente distribuído pelos funcionários?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q48" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q48" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q48" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q48" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q48" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">49. Sou sempre capaz de resolver problemas, se tentar o suficiente.</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q49" value="1" required><label>Discordo totalmente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q49" value="2"><label>Discordo</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q49" value="3"><label>Nem concordo nem discordo</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q49" value="4"><label>Concordo</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q49" value="5"><label>Concordo totalmente</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">50. É-me fácil seguir os meus planos e atingir os meus objetivos.</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q50" value="1" required><label>Discordo totalmente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q50" value="2"><label>Discordo</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q50" value="3"><label>Nem concordo nem discordo</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q50" value="4"><label>Concordo</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q50" value="5"><label>Concordo totalmente</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">51. O seu trabalho tem algum significado para si?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q51" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q51" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q51" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q51" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q51" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">52. Sente que o seu trabalho é importante?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q52" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q52" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q52" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q52" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q52" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">53. Sente-se motivado e envolvido com o seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q53" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q53" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q53" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q53" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q53" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">54. Gosta de falar com os outros sobre o seu local de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q54" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q54" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q54" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q54" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q54" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">55. Sente que os problemas do seu local de trabalho são seus também?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q55" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q55" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q55" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q55" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q55" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">56. As suas perspectivas de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q56" value="1" required><label>Muito insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q56" value="2"><label>Insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q56" value="3"><label>Nem satisfeito nem insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q56" value="4"><label>Satisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q56" value="5"><label>Muito satisfeito</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">57. As condições físicas do seu local de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q57" value="1" required><label>Muito insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q57" value="2"><label>Insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q57" value="3"><label>Nem satisfeito nem insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q57" value="4"><label>Satisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q57" value="5"><label>Muito satisfeito</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">58. A forma como as suas capacidades são utilizadas?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q58" value="1" required><label>Muito insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q58" value="2"><label>Insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q58" value="3"><label>Nem satisfeito nem insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q58" value="4"><label>Satisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q58" value="5"><label>Muito satisfeito</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">59. O seu trabalho de uma forma global?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q59" value="1" required><label>Muito insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q59" value="2"><label>Insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q59" value="3"><label>Nem satisfeito nem insatisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q59" value="4"><label>Satisfeito</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q59" value="5"><label>Muito satisfeito</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">60. Sente-se preocupado em ficar desempregado?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q60" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q60" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q60" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q60" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q60" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">61. Em geral, sente que a sua saúde é:</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q61" value="5" required><label>Excelente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q61" value="4"><label>Muito boa</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q61" value="3"><label>Boa</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q61" value="2"><label>Razoável</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q61" value="1"><label>Deficitária</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">62. Sente que o seu trabalho lhe exige muita energia que acaba por afetar a sua vida privada negativamente?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q62" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q62" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q62" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q62" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q62" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">63. Sente que o seu trabalho lhe exige muito tempo que acaba por afetar a sua vida privada negativamente?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q63" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q63" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q63" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q63" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q63" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">64. A sua família e os seus amigos dizem-lhe que trabalha demais?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q64" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q64" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q64" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q64" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q64" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">65. Dormiu mal e agitado(a)?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q65" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q65" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q65" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q65" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q65" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">66. Teve dificuldade em adormecer?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q66" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q66" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q66" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q66" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q66" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">67. Se sentiu fisicamente exausto(a)?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q67" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q67" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q67" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q67" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q67" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">68. Se sentiu emocionalmente exausto(a)?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q68" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q68" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q68" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q68" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q68" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">69. Teve problemas para relaxar?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q69" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q69" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q69" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q69" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q69" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">70. Esteve irritável?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q70" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q70" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q70" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q70" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q70" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">71. Se sentiu triste?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q71" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q71" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q71" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q71" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q71" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">72. Falta de interesse por coisas quotidianas?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q72" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q72" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q72" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q72" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q72" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">73. Ameaças de violência?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q73" value="1" required><label>Não</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q73" value="5"><label>Sim</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">74. Violência física?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q74" value="1" required><label>Não</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q74" value="5"><label>Sim</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">75. Assédio sexual indesejado?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q75" value="1" required><label>Não</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q75" value="5"><label>Sim</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">76. Ameaças de assédio?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q76" value="1" required><label>Não</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q76" value="5"><label>Sim</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">77. Sente que o seu trabalho tem objetivos claros?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q77" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q77" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q77" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q77" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q77" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">78. Tem possibilidade de aprender coisas novas através do seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q78" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q78" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q78" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q78" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q78" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">79. O seu trabalho é reconhecido e apreciado pelos seus colegas?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q79" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q79" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q79" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q79" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q79" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">80. A gerência do seu local de trabalho é eficiente na resolução de conflitos?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q80" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q80" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q80" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q80" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q80" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">81. Sente-se valorizado no seu local de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q81" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q81" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q81" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q81" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q81" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">82. Tem autonomia para organizar o seu próprio tempo de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q82" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q82" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q82" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q82" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q82" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">83. Sente que existe equilíbrio entre o esforço que faz e as recompensas que recebe?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q83" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q83" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q83" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q83" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q83" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">84. Nos últimos 12 meses, sentiu que foi discriminado no seu local de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q84" value="1" required><label>Não</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q84" value="5"><label>Sim</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">85. Considera que tem recursos suficientes para realizar bem o seu trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q85" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q85" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q85" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q85" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q85" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">86. Sente-se seguro ao expressar as suas opiniões no seu local de trabalho?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q86" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q86" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q86" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q86" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q86" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">87. Recomendaria o seu local de trabalho a um amigo?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q87" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q87" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q87" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q87" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q87" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+
+                    <!-- Botões de Navegação -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="button" class="btn btn-secondary" id="prev-btn" disabled>Anterior</button>
+                        <button type="button" class="btn btn-primary" id="next-btn">Próxima</button>
+                        <button type="submit" class="btn btn-success" id="submit-btn" style="display: none;">Enviar Respostas</button>
+                    </div>
+                    <!-- Botão de Envio -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submit-button">Enviar Respostas</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>Questionário de Avaliação de Fatores Psicossociais no Trabalho - COPSOQ II (Versão Média)</p>
+            <p><small>Baseado em: Kristensen, T. (2001) | Tradução e adaptação: Silva, C. et al. (2011)</small></p>
+            <p><small>Em conformidade com a NR-17 (Ergonomia) e NR-1</small></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("copsoq-form");
+            const questionItems = form.querySelectorAll(".question-item");
+            const progressBar = document.getElementById("progress-bar");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const submitBtn = document.getElementById("submit-btn");
+            
+            const totalQuestions = 87 + 3; // 87 perguntas + 3 dados demográficos
+            const questionsPerPage = 10; // Ajuste conforme necessário
+            const totalPages = Math.ceil(totalQuestions / questionsPerPage);
+            let currentPage = 1;
+            
+            function showCurrentPage() {
+                const startIdx = (currentPage - 1) * questionsPerPage;
+                const endIdx = Math.min(startIdx + questionsPerPage, totalQuestions);
+                
+                questionItems.forEach((item, index) => {
+                    if (index >= startIdx && index < endIdx) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+                
+                // Atualizar botões
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.style.display = currentPage === totalPages ? "none" : "block";
+                submitBtn.style.display = currentPage === totalPages ? "block" : "none";
+                
+                // Atualizar barra de progresso
+                const progress = Math.round((currentPage / totalPages) * 100);
+                progressBar.style.width = `${progress}%`;
+                progressBar.textContent = `${progress}%`;
+                progressBar.setAttribute("aria-valuenow", progress);
+            }
+            
+            // Inicializar a primeira página
+            showCurrentPage();
+            
+            // Evento para botão "Próxima"
+            nextBtn.addEventListener("click", function() {
+                // Verificar se todas as perguntas da página atual foram respondidas
+                const startIdx = (currentPage - 1) * questionsPerPage;
+                const endIdx = Math.min(startIdx + questionsPerPage, totalQuestions);
+                let allAnswered = true;
+                
+                for (let i = startIdx; i < endIdx; i++) {
+                    const question = questionItems[i];
+                    const inputs = question.querySelectorAll("input[type='radio'], select");
+                    let questionAnswered = false;
+                    
+                    inputs.forEach(input => {
+                        if ((input.type === "radio" && input.checked) || 
+                            (input.type === "select-one" && input.value)) {
+                            questionAnswered = true;
+                        }
+                    });
+                    
+                    if (!questionAnswered) {
+                        allAnswered = false;
+                        question.scrollIntoView({ behavior: "smooth" });
+                        // Adicionar feedback visual para campo não respondido
+                        question.style.border = "1px solid red";
+                        setTimeout(() => { question.style.border = "1px solid #eee"; }, 2000);
+                        break;
+                    }
+                }
+                
+                if (allAnswered) {
+                    currentPage++;
+                    showCurrentPage();
+                    window.scrollTo(0, 0);
+                } else {
+                    alert("Por favor, responda todas as perguntas antes de continuar.");
+                }
+            });
+            
+            // Evento para botão "Anterior"
+            prevBtn.addEventListener("click", function() {
+                currentPage--;
+                showCurrentPage();
+                window.scrollTo(0, 0);
+            });
+            
+            // Evento para envio do formulário
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                // Verificar se todas as perguntas foram respondidas na última página
+                const startIdx = (currentPage - 1) * questionsPerPage;
+                const endIdx = Math.min(startIdx + questionsPerPage, totalQuestions);
+                let allAnswered = true;
+                for (let i = startIdx; i < endIdx; i++) {
+                    const question = questionItems[i];
+                    const inputs = question.querySelectorAll("input[type='radio'], select");
+                    let questionAnswered = false;
+                    inputs.forEach(input => {
+                        if ((input.type === "radio" && input.checked) || 
+                            (input.type === "select-one" && input.value)) {
+                            questionAnswered = true;
+                        }
+                    });
+                    if (!questionAnswered) {
+                        allAnswered = false;
+                        question.scrollIntoView({ behavior: "smooth" });
+                        question.style.border = "1px solid red";
+                        setTimeout(() => { question.style.border = "1px solid #eee"; }, 2000);
+                        break;
+                    }
+                }
+
+                if (!allAnswered) {
+                    alert("Por favor, responda todas as perguntas antes de enviar.");
+                    return;
+                }
+                
+                // Em um ambiente real, aqui seria feita uma requisição para o backend
+                // para processar as respostas
+                
+                // Simulação de envio bem-sucedido
+                alert("Obrigado por completar o questionário! Suas respostas foram enviadas com sucesso.");
+                
+                // Redirecionar para a página de agradecimento/dashboard
+                window.location.href = "dashboard_medio.html";
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby4DrapVyT4R1Ob-LG8pkg6ajZTHw0xGBYA4ANEi-F7thezixQVkDNmHx39IqCSyg5D    <!-- Scripts Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="js/firebase_config.js"></script>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script do formulário adaptado para Firebase
+        const form = document.getElementById("copsoq-form");
+        const progressBar = document.getElementById("progress-bar");
+        const formContainer = form.parentElement; // Para substituir o form por mensagens
+        const submitButton = form.querySelector("button[type=\"submit\"]"); // Assumindo que há um botão submit
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const respostasRef = database.ref("respostas");
+
+        const totalQuestions = 87 + 3; // 87 perguntas + 3 demográficas
+        const inputs = form.querySelectorAll("input[type=\"radio\"], select");
+
+        function updateProgress() {
+            let answeredCount = 0;
+            const questionsAnswered = new Set();
+
+            inputs.forEach((input) => {
+                if (input.tagName === "SELECT") {
+                    if (input.value !== "") {
+                        questionsAnswered.add(input.name);
+                    }
+                } else if (input.type === "radio") {
+                    if (input.checked) {
+                        questionsAnswered.add(input.name);
+                    }
+                }
+            });
+
+            answeredCount = questionsAnswered.size;
+            const progress = Math.round((answeredCount / totalQuestions) * 100);
+            progressBar.style.width = progress + "%";
+            progressBar.textContent = progress + "%";
+            progressBar.setAttribute("aria-valuenow", progress);
+        }
+
+        inputs.forEach((input) => {
+            input.addEventListener("change", updateProgress);
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault(); // Prevent default form submission
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Enviando...";
+            }
+
+            // Captura o parâmetro 'empresa' da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const nomeEmpresa = urlParams.get("empresa") || "Desconhecida"; // Usa "Desconhecida" se o parâmetro não existir
+
+            const formData = new FormData(form);
+            const dataObject = {};
+            formData.forEach((value, key) => {
+                dataObject[key] = value;
+            });
+            // Adiciona um timestamp para identificar unicamente a resposta
+            dataObject.timestamp = new Date().toISOString();
+            // Adiciona o nome da empresa capturado da URL
+            dataObject.empresa = nomeEmpresa;
+
+            // Envia para o Firebase Realtime Database
+            respostasRef
+                .push(dataObject)
+                .then(() => {
+                    console.log("Success! Data sent to Firebase.");
+                    // Redireciona para a página de agradecimento
+                    window.location.href = "agradecimento.html"; 
+                })
+                .catch((error) => {
+                    console.error("Error sending data to Firebase!", error.message);
+                    // Display error message (mantendo a estrutura anterior)
+                    formContainer.innerHTML = 
+                        '<div class="alert alert-danger" role="alert">' +
+                        "<h5>Erro!</h5>" +
+                        "<p>Ocorreu um erro ao enviar suas respostas. Por favor, tente novamente mais tarde ou contate o administrador.</p>" +
+                        "<p><small>Detalhe do erro: " +
+                        error.message +
+                        "</small></p>" +
+                        "</div>";
+                    // Reabilitar botão em caso de erro, se o formulário não for substituído
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = "Enviar Respostas"; 
+                    }
+                });
+        });
+
+        // Initial progress update on load
+        updateProgress();
+    </script>
