@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário COPSOQ II - Versão Média (87 perguntas)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Scripts Firebase - Carregados no cabeçalho para garantir disponibilidade -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="js/firebase_config.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        .question-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .form-check-input:checked {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .progress {
+            height: 10px;
+            margin-bottom: 20px;
+        }
+        .instructions {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .scale-legend {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+        .radio-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .radio-option {
+            text-align: center;
+            flex: 1;
+        }
+        .radio-option label {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .radio-options {
+                flex-direction: column;
+            }
+            .radio-option {
+                margin-bottom: 10px;
+            }
+        }
+        .save-progress-btn {
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+        }
+        .save-progress-btn:hover {
+            background-color: #218838;
+            color: white;
+        }
+        .alert-success {
+            margin-top: 10px;
+            display: none;
+        }
+        .debug-info {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <div class="container">
+            <h1>Questionário COPSOQ II</h1>
+            <p class="lead">Versão Média (87 perguntas)</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Avaliação de Fatores Psicossociais no Trabalho</h5>
+            </div>
+            <div class="card-body">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progress-bar">0%</div>
+                </div>
+                
+                <div class="card mb-4 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Aviso de Proteção de Dados (LGPD)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Em conformidade com a Lei Geral de Proteção de Dados (LGPD), informamos que:</p>
+                        <ul>
+                            <li>Seus dados pessoais, mesmo que não identificáveis diretamente, serão tratados com segurança e confidencialidade;</li>
+                            <li>A finalidade da coleta é exclusivamente para avaliação dos fatores psicossociais no ambiente de trabalho, visando melhorias nas condições laborais;</li>
+                            <li>Apenas dados estritamente necessários para esta finalidade serão coletados;</li>
+                            <li>Os resultados serão utilizados de forma agregada e anônima;</li>
+                            <li>Seus dados serão armazenados de forma segura e pelo tempo necessário para cumprir a finalidade da pesquisa.</li>
+                        </ul>
+                        <p class="mb-0">Ao prosseguir com o preenchimento deste questionário, você concorda com o tratamento dos seus dados conforme descrito acima.</p>
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <h5>Instruções</h5>
+                    <p>As perguntas a seguir referem-se ao seu ambiente de trabalho e bem-estar. Por favor, responda a todas as perguntas marcando a opção que melhor reflete sua situação. Não existem respostas certas ou erradas.</p>
+                    <p>O questionário contém 87 perguntas numeradas sequencialmente de 1 a 87. O tempo estimado para preenchimento é de 15-25 minutos.</p>
+                    <p>Escala de resposta para a maioria das questões:</p>
+                    <div class="scale-legend">
+                        <span>1 - Nunca/quase nunca</span>
+                        <span>2 - Raramente</span>
+                        <span>3 - Às vezes</span>
+                        <span>4 - Frequentemente</span>
+                        <span>5 - Sempre</span>
+                    </div>
+                </div>
+                
+                <form id="copsoq-form">
+                    <!-- Dados Demográficos -->
+                    <div class="question-item">
+                        <label class="form-label required-field">Idade:</label>
+                        <select class="form-select" required name="idade">
+                            <option value="" selected disabled>Selecione sua faixa etária</option>
+                            <option value="18-25">18-25 anos</option>
+                            <option value="26-35">26-35 anos</option>
+                            <option value="36-45">36-45 anos</option>
+                            <option value="46-55">46-55 anos</option>
+                            <option value="56+">56 anos ou mais</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">Gênero:</label>
+                        <select class="form-select" required name="genero">
+                            <option value="" selected disabled>Selecione seu gênero</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                            <option value="prefiro_nao_informar">Prefiro não informar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="question-item">
+                        <label class="form-label required-field">Tempo na empresa:</label>
+                        <select class="form-select" required name="tempo_empresa">
+                            <option value="" selected disabled>Selecione o tempo na empresa</option>
+                            <option value="menos_1">Menos de 1 ano</option>
+                            <option value="1-3">1-3 anos</option>
+                            <option value="4-6">4-6 anos</option>
+                            <option value="7-10">7-10 anos</option>
+                            <option value="mais_10">Mais de 10 anos</option>
+                        </select>
+                    </div>
+
+                    <!-- Perguntas 1 a 87 -->
+                    <div class="question-item">
+                        <label class="form-label required-field">1. A sua carga de trabalho acumula-se por ser mal distribuída?</label>
+                        <div class="radio-options">
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="1" required><label>Nunca/quase nunca</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="2"><label>Raramente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="3"><label>Às vezes</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="4"><label>Frequentemente</label></div>
+                            <div class="radio-option"><input type="radio" class="form-check-input" name="q1" value="5"><label>Sempre</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botões de navegação e envio -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="button" class="btn btn-secondary" id="prev-btn">Anterior</button>
+                        <button type="button" class="btn btn-success save-progress-btn" id="save-progress-btn">Salvar Progresso</button>
+                        <div>
+                            <button type="button" class="btn btn-primary" id="next-btn">Próxima</button>
+                            <button type="submit" class="btn btn-primary" id="submit-btn" style="display: none;">Enviar Respostas</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Alerta de sucesso ao salvar progresso -->
+                    <div class="alert alert-success" role="alert" id="save-success-alert">
+                        Progresso salvo com sucesso!
+                    </div>
+                    
+                    <!-- Informações de depuração (ocultas por padrão) -->
+                    <div class="debug-info" id="debug-info">
+                        <h6>Informações de Depuração:</h6>
+                        <div id="debug-content"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-3 bg-light">
+        <div class="container">
+            <p>Questionário de Avaliação de Fatores Psicossociais no Trabalho - COPSOQ II</p>
+            <p><small>Em conformidade com a NR-17 (Ergonomia) e NR-1</small></p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicialização do Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const respostasRef = database.ref("respostas");
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("DOM carregado, inicializando formulário...");
+            
+            // Elementos do formulário
+            const form = document.getElementById("copsoq-form");
+            const questionItems = form.querySelectorAll(".question-item");
+            const progressBar = document.getElementById("progress-bar");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const submitBtn = document.getElementById("submit-btn");
+            const saveProgressBtn = document.getElementById("save-progress-btn");
+            const saveSuccessAlert = document.getElementById("save-success-alert");
+            const debugInfo = document.getElementById("debug-info");
+            const debugContent = document.getElementById("debug-content");
+            
+            // Verificar se todos os elementos foram encontrados
+            console.log("Elementos encontrados:", {
+                form: !!form,
+                questionItems: questionItems.length,
+                progressBar: !!progressBar,
+                prevBtn: !!prevBtn,
+                nextBtn: !!nextBtn,
+                submitBtn: !!submitBtn,
+                saveProgressBtn: !!saveProgressBtn,
+                saveSuccessAlert: !!saveSuccessAlert
+            });
+            
+            // Captura o parâmetro 'empresa' da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const nomeEmpresa = urlParams.get("empresa") || "Desconhecida";
+            
+            // Gerar um ID único para esta sessão do formulário
+            const sessionId = "session_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+            
+            // Configuração de paginação
+            const totalQuestions = questionItems.length; // Conta automaticamente o número de perguntas
+            const questionsPerPage = 10; // Ajuste conforme necessário
+            const totalPages = Math.ceil(totalQuestions / questionsPerPage);
+            let currentPage = 1;
+            
+            console.log("Configuração de paginação:", {
+                totalQuestions,
+                questionsPerPage,
+                totalPages,
+                currentPage
+            });
+            
+            // Função para mostrar a página atual
+            function showCurrentPage() {
+                console.log(`Mostrando página ${currentPage} de ${totalPages}`);
+                
+                const startIdx = (currentPage - 1) * questionsPerPage;
+                const endIdx = Math.min(startIdx + questionsPerPage, totalQuestions);
+                
+                questionItems.forEach((item, index) => {
+                    if (index >= startIdx && index < endIdx) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+                
+                // Atualizar botões
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.style.display = currentPage === totalPages ? "none" : "block";
+                submitBtn.style.display = currentPage === totalPages ? "block" : "none";
+                
+                // Atualizar barra de progresso
+                const progress = Math.round((currentPage / totalPages) * 100);
+                progressBar.style.width = `${progress}%`;
+                progressBar.textContent = `${progress}%`;
+                progressBar.setAttribute("aria-valuenow", progress);
+                
+                // Atualizar informações de depuração
+                debugContent.innerHTML = `
+                    <p>Página atual: ${currentPage} de ${totalPages}</p>
+                    <p>Questões nesta página: ${startIdx + 1} a ${endIdx}</p>
+                    <p>Total de questões: ${totalQuestions}</p>
+                    <p>ID da sessão: ${sessionId}</p>
+                    <p>Empresa: ${nomeEmpresa}</p>
+                `;
+            }
+            
+            // Função para coletar os dados atuais do formulário
+            function collectFormData(isComplete = false) {
+                const formData = new FormData(form);
+                const dataObject = {};
+                formData.forEach((value, key) => {
+                    dataObject[key] = value;
+                });
+                
+                // Adiciona metadados
+                dataObject.timestamp = new Date().toISOString();
+                dataObject.empresa = nomeEmpresa;
+                dataObject.sessionId = sessionId;
+                dataObject.currentPage = currentPage;
+                dataObject.totalPages = totalPages;
+                dataObject.isComplete = isComplete;
+                
+                return dataObject;
+            }
+            
+            // Função para salvar o progresso atual
+            function saveProgress() {
+                console.log("Salvando progresso...");
+                const dataObject = collectFormData(false);
+                
+                // Desabilitar botão durante o salvamento
+                saveProgressBtn.disabled = true;
+                saveProgressBtn.textContent = "Salvando...";
+                
+                // Salvar no Firebase com o ID da sessão
+                database.ref("progresso/" + sessionId).set(dataObject)
+                    .then(() => {
+                        console.log("Progresso salvo com sucesso!");
+                        saveProgressBtn.disabled = false;
+                        saveProgressBtn.textContent = "Salvar Progresso";
+                        
+                        // Mostrar alerta de sucesso
+                        saveSuccessAlert.style.display = "block";
+                        setTimeout(() => {
+                            saveSuccessAlert.style.display = "none";
+                        }, 3000);
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao salvar progresso:", error);
+                        saveProgressBtn.disabled = false;
+                        saveProgressBtn.textContent = "Salvar Progresso";
+                        alert("Erro ao salvar progresso: " + error.message);
+                    });
+            }
+            
+            // Inicializar a primeira página
+            showCurrentPage();
+            
+            // Evento para botão "Próxima"
+            nextBtn.addEventListener("click", function() {
+                console.log("Botão Próxima clicado");
+                
+                // Verificar se todas as perguntas da página atual foram respondidas
+                const startIdx = (currentPage - 1) * questionsPerPage;
+                const endIdx = Math.min(startIdx + questionsPerPage, totalQuestions);
+                let allAnswered = true;
+                let unansweredQuestions = [];
+                
+                // Versão simplificada da validação - permite avançar mesmo sem responder tudo
+                // Apenas registra quais questões não foram respondidas
+                for (let i = startIdx; i < endIdx; i++) {
+                    if (i >= questionItems.length) continue; // Proteção contra índice fora do range
+                    
+                    const question = questionItems[i];
+                    const inputs = question.querySelectorAll("input[type='radio'], select");
+                    let questionAnswered = false;
+                    
+                    inputs.forEach(input => {
+                        if ((input.type === "radio" && input.checked) || 
+                            (input.type === "select-one" && input.value)) {
+                            questionAnswered = true;
+                        }
+                    });
+                    
+                    if (!questionAnswered) {
+                        unansweredQuestions.push(i + 1); // +1 para exibir número da questão de forma amigável
+                    }
+                }
+                
+                if (unansweredQuestions.length > 0) {
+                    console.log("Questões não respondidas:", unansweredQuestions);
+                    const confirmAdvance = confirm(`Algumas questões não foram respondidas (${unansweredQuestions.join(", ")}). Deseja avançar mesmo assim?`);
+                    if (!confirmAdvance) {
+                        return;
+                    }
+                }
+                
+                // Salvar progresso automaticamente ao avançar
+                saveProgress();
+                
+                // Avançar para a próxima página
+                currentPage++;
+                showCurrentPage();
+                window.scrollTo(0, 0);
+            });
+            
+            // Evento para botão "Anterior"
+            prevBtn.addEventListener("click", function() {
+                console.log("Botão Anterior clicado");
+                currentPage--;
+                showCurrentPage();
+                window.scrollTo(0, 0);
+            });
+            
+            // Evento para botão "Salvar Progresso"
+            saveProgressBtn.addEventListener("click", function() {
+                console.log("Botão Salvar Progresso clicado");
+                saveProgress();
+            });
+            
+            // Evento para envio do formulário
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                console.log("Formulário enviado");
+                
+                // Verificar se todas as perguntas foram respondidas na última página
+                const startIdx = (currentPage - 1) * questionsPerPage;
+                const endIdx = Math.min(startIdx + questionsPerPage, totalQuestions);
+                let unansweredQuestions = [];
+                
+                for (let i = startIdx; i < endIdx; i++) {
+                    if (i >= questionItems.length) continue; // Proteção contra índice fora do range
+                    
+                    const question = questionItems[i];
+                    const inputs = question.querySelectorAll("input[type='radio'], select");
+                    let questionAnswered = false;
+                    
+                    inputs.forEach(input => {
+                        if ((input.type === "radio" && input.checked) || 
+                            (input.type === "select-one" && input.value)) {
+                            questionAnswered = true;
+                        }
+                    });
+                    
+                    if (!questionAnswered) {
+                        unansweredQuestions.push(i + 1); // +1 para exibir número da questão de forma amigável
+                    }
+                }
+
+                if (unansweredQuestions.length > 0) {
+                    console.log("Questões não respondidas na última página:", unansweredQuestions);
+                    const confirmSubmit = confirm(`Algumas questões não foram respondidas (${unansweredQuestions.join(", ")}). Deseja enviar mesmo assim?`);
+                    if (!confirmSubmit) {
+                        return;
+                    }
+                }
+                
+                // Desabilitar botão durante o envio
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviando...";
+                
+                // Coletar dados completos
+                const dataObject = collectFormData(true);
+                
+                // Enviar para o Firebase
+                respostasRef.push(dataObject)
+                    .then(() => {
+                        console.log("Respostas enviadas com sucesso!");
+                        
+                        // Remover o progresso salvo após envio completo
+                        database.ref("progresso/" + sessionId).remove()
+                            .then(() => console.log("Progresso temporário removido"))
+                            .catch(error => console.error("Erro ao remover progresso:", error));
+                        
+                        // Redirecionar para a página de agradecimento
+                        window.location.href = "index.html";
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao enviar respostas:", error);
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = "Enviar Respostas";
+                        alert("Erro ao enviar respostas: " + error.message);
+                    });
+            });
+            
+            // Função para atualizar o progresso
+            function updateProgress() {
+                const inputs = form.querySelectorAll("input[type='radio'], select");
+                const questionsAnswered = new Set();
+                
+                inputs.forEach((input) => {
+                    if (input.tagName === "SELECT") {
+                        if (input.value !== "") {
+                            questionsAnswered.add(input.name);
+                        }
+                    } else if (input.type === "radio") {
+                        if (input.checked) {
+                            questionsAnswered.add(input.name);
+                        }
+                    }
+                });
+                
+                const answeredCount = questionsAnswered.size;
+                const progress = Math.round((answeredCount / totalQuestions) * 100);
+                progressBar.style.width = `${progress}%`;
+                progressBar.textContent = `${progress}%`;
+                progressBar.setAttribute("aria-valuenow", progress);
+            }
+            
+            // Adicionar evento de mudança para todos os inputs
+            const inputs = form.querySelectorAll("input[type='radio'], select");
+            inputs.forEach((input) => {
+                input.addEventListener("change", updateProgress);
+            });
+            
+            // Atualizar progresso inicial
+            updateProgress();
+            
+            // Adicionar botão para mostrar/ocultar informações de depuração
+            const debugToggle = document.createElement("button");
+            debugToggle.textContent = "Mostrar Depuração";
+            debugToggle.className = "btn btn-sm btn-outline-secondary mt-3";
+            debugToggle.addEventListener("click", function() {
+                if (debugInfo.style.display === "none" || !debugInfo.style.display) {
+                    debugInfo.style.display = "block";
+                    debugToggle.textContent = "Ocultar Depuração";
+                } else {
+                    debugInfo.style.display = "none";
+                    debugToggle.textContent = "Mostrar Depuração";
+                }
+            });
+            form.appendChild(debugToggle);
+            
+            console.log("Formulário inicializado com sucesso!");
+        });
+    </script>
+</body>
+</html>
