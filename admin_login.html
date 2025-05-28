@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrativo - COPSOQ II</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            color: #0d6efd;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: #6c757d;
+        }
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 0.75rem;
+        }
+        .alert {
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1>Área Administrativa</h1>
+            <p>COPSOQ II - Versão Média</p>
+        </div>
+        
+        <form id="login-form">
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" placeholder="Senha" required>
+                <label for="password">Senha de Acesso</label>
+            </div>
+            
+            <div class="mb-3">
+                <select class="form-select" id="destination" required>
+                    <option value="" selected disabled>Selecione o destino</option>
+                    <option value="dashboard_medio.html">Dashboard</option>
+                    <option value="relatorio_medio_sequencial.html">Relatório Detalhado</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Acessar</button>
+            
+            <div class="alert alert-danger" id="error-message" role="alert">
+                Senha incorreta. Por favor, tente novamente.
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const destination = document.getElementById('destination').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            // Senha definida para acesso administrativo
+            // Em um ambiente de produção, isso deveria ser verificado no servidor
+            const correctPassword = "copsoq2025admin";
+            
+            if (password === correctPassword) {
+                // Armazena um token simples no localStorage para manter o acesso
+                localStorage.setItem('adminAuth', 'true');
+                // Redireciona para a página selecionada
+                window.location.href = destination;
+            } else {
+                // Exibe mensagem de erro
+                errorMessage.style.display = 'block';
+                // Limpa o campo de senha
+                document.getElementById('password').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
