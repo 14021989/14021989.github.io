@@ -1344,25 +1344,4 @@
                     // Redireciona para a página de agradecimento
                     window.location.href = "index.html"; 
                 })
-                .catch((error) => {
-                    console.error("Error sending data to Firebase!", error.message);
-                    // Display error message (mantendo a estrutura anterior)
-                    formContainer.innerHTML = 
-                        '<div class="alert alert-danger" role="alert">' +
-                        "<h5>Erro!</h5>" +
-                        "<p>Ocorreu um erro ao enviar suas respostas. Por favor, tente novamente mais tarde ou contate o administrador.</p>" +
-                        "<p><small>Detalhe do erro: " +
-                        error.message +
-                        "</small></p>" +
-                        "</div>";
-                    // Reabilitar botão em caso de erro, se o formulário não for substituído
-                    if (submitButton) {
-                        submitButton.disabled = false;
-                        submitButton.textContent = "Enviar Respostas"; 
-                    }
-                });
-        });
-
-        // Initial progress update on load
-        updateProgress();
-    </script>
+               
