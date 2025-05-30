@@ -1,0 +1,3725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>
+   Question&aacute;rio COPSOQ II - Vers&atilde;o M&eacute;dia (87 perguntas)
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+   body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        /* Removido estilo para dimension-header */
+        .question-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .form-check-input:checked {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .progress {
+            height: 10px;
+            margin-bottom: 20px;
+        }
+        .form-check-label {
+            cursor: pointer;
+        }
+        .form-check {
+            margin-bottom: 5px;
+        }
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+        .radio-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .radio-option {
+            text-align: center;
+            flex: 1;
+        }
+        .radio-option label {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .radio-options {
+                flex-direction: column;
+            }
+            .radio-option {
+                margin-bottom: 10px;
+            }
+        }
+  </style>
+  <!-- Firebase Scripts - Carregados antes do corpo do documento -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js">
+  </script>
+  <script src="js/firebase_config.js">
+  </script>
+ </head>
+ <body>
+  <div class="header text-center">
+   <div class="container">
+    <h1>
+     Question&aacute;rio COPSOQ II
+    </h1>
+    <p class="lead">
+     Vers&atilde;o M&eacute;dia (87 perguntas)
+    </p>
+    <p class="text-white small fw-bold" style="margin-top: 1rem;">
+     Seus dados ser&atilde;o tratados com confidencialidade e de acordo com a Lei Geral de Prote&ccedil;&atilde;o de Dados (LGPD - Lei n&ordm; 13.709/2018).
+    </p>
+   </div>
+  </div>
+  <div class="container">
+   <div class="card">
+    <div class="card-header bg-primary text-white">
+     <h5 class="mb-0">
+      Avalia&ccedil;&atilde;o de Fatores Psicossociais no Trabalho
+     </h5>
+    </div>
+    <div class="card-body">
+     <p>
+      Este question&aacute;rio avalia fatores psicossociais no ambiente de trabalho. Suas respostas s&atilde;o confidenciais e ser&atilde;o utilizadas apenas para fins de an&aacute;lise coletiva.
+     </p>
+     <p>
+      Por favor, responda todas as perguntas com base na sua experi&ecirc;ncia de trabalho nos &uacute;ltimos 3 meses.
+     </p>
+     <div class="progress">
+      <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;">
+       0%
+      </div>
+     </div>
+     <form id="copsoq-form">
+      <!-- Seção Demográfica -->
+      <div class="mb-4">
+       <h5>
+        Informa&ccedil;&otilde;es Demogr&aacute;ficas
+       </h5>
+       <div class="mb-3">
+        <label class="form-label required-field" for="idade">
+         Faixa Et&aacute;ria
+        </label>
+        <select class="form-select" id="idade" name="idade" required>
+         <option value>
+          Selecione...
+         </option>
+         <option value="18-25">
+          18-25 anos
+         </option>
+         <option value="26-35">
+          26-35 anos
+         </option>
+         <option value="36-45">
+          36-45 anos
+         </option>
+         <option value="46-55">
+          46-55 anos
+         </option>
+         <option value="56+">
+          56 anos ou mais
+         </option>
+        </select>
+       </div>
+       <div class="mb-3">
+        <label class="form-label required-field" for="genero">
+         G&ecirc;nero
+        </label>
+        <select class="form-select" id="genero" name="genero" required>
+         <option value>
+          Selecione...
+         </option>
+         <option value="masculino">
+          Masculino
+         </option>
+         <option value="feminino">
+          Feminino
+         </option>
+         <option value="outro">
+          Outro
+         </option>
+         <option value="prefiro_nao_informar">
+          Prefiro n&atilde;o informar
+         </option>
+        </select>
+       </div>
+       <div class="mb-3">
+        <label class="form-label required-field" for="tempo_empresa">
+         Tempo na Empresa
+        </label>
+        <select class="form-select" id="tempo_empresa" name="tempo_empresa" required>
+         <option value>
+          Selecione...
+         </option>
+         <option value="menos_1">
+          Menos de 1 ano
+         </option>
+         <option value="1-3">
+          1-3 anos
+         </option>
+         <option value="4-5">
+          4-5 anos
+         </option>
+         <option value="6-10">
+          6-10 anos
+         </option>
+         <option value="mais_10">
+          Mais de 10 anos
+         </option>
+        </select>
+       </div>
+      </div>
+      <!-- Dimensão 1: Exigências Quantitativas -->
+      <!-- Dimensão 2: Ritmo de Trabalho -->
+      <!-- Dimensão 3: Exigências Cognitivas -->
+      <!-- Continuar com as perguntas 6 a 87... -->
+      <!-- Por brevidade, estou incluindo apenas algumas perguntas representativas -->
+      <div class="text-center mt-4">
+       <button class="btn btn-primary" type="submit">
+        Enviar Respostas
+       </button>
+      </div>
+      <div class="page-container" id="page-1">
+       <div class="question-item">
+        <label class="form-label required-field">
+         1. Com que frequ&ecirc;ncia voc&ecirc; n&atilde;o tem tempo para completar todas as tarefas do seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p1_1" name="p1" required type="radio" value="1">
+          <label class="form-check-label" for="p1_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p1_2" name="p1" type="radio" value="2">
+          <label class="form-check-label" for="p1_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p1_3" name="p1" type="radio" value="3">
+          <label class="form-check-label" for="p1_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p1_4" name="p1" type="radio" value="4">
+          <label class="form-check-label" for="p1_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p1_5" name="p1" type="radio" value="5">
+          <label class="form-check-label" for="p1_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         2. Voc&ecirc; precisa trabalhar muito rapidamente?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p2_1" name="p2" required type="radio" value="1">
+          <label class="form-check-label" for="p2_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p2_2" name="p2" type="radio" value="2">
+          <label class="form-check-label" for="p2_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p2_3" name="p2" type="radio" value="3">
+          <label class="form-check-label" for="p2_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p2_4" name="p2" type="radio" value="4">
+          <label class="form-check-label" for="p2_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p2_5" name="p2" type="radio" value="5">
+          <label class="form-check-label" for="p2_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         3. Voc&ecirc; fica com trabalho atrasado?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p3_1" name="p3" required type="radio" value="1">
+          <label class="form-check-label" for="p3_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p3_2" name="p3" type="radio" value="2">
+          <label class="form-check-label" for="p3_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p3_3" name="p3" type="radio" value="3">
+          <label class="form-check-label" for="p3_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p3_4" name="p3" type="radio" value="4">
+          <label class="form-check-label" for="p3_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p3_5" name="p3" type="radio" value="5">
+          <label class="form-check-label" for="p3_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         4. Voc&ecirc; tem que trabalhar em um ritmo muito acelerado?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p4_1" name="p4" required type="radio" value="1">
+          <label class="form-check-label" for="p4_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p4_2" name="p4" type="radio" value="2">
+          <label class="form-check-label" for="p4_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p4_3" name="p4" type="radio" value="3">
+          <label class="form-check-label" for="p4_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p4_4" name="p4" type="radio" value="4">
+          <label class="form-check-label" for="p4_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p4_5" name="p4" type="radio" value="5">
+          <label class="form-check-label" for="p4_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         5. Seu trabalho exige muita concentra&ccedil;&atilde;o?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p5_1" name="p5" required type="radio" value="1">
+          <label class="form-check-label" for="p5_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p5_2" name="p5" type="radio" value="2">
+          <label class="form-check-label" for="p5_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p5_3" name="p5" type="radio" value="3">
+          <label class="form-check-label" for="p5_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p5_4" name="p5" type="radio" value="4">
+          <label class="form-check-label" for="p5_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p5_5" name="p5" type="radio" value="5">
+          <label class="form-check-label" for="p5_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         6. Seu trabalho exige que voc&ecirc; tome decis&otilde;es dif&iacute;ceis?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p6_1" name="p6" required type="radio" value="1">
+          <label class="form-check-label" for="p6_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p6_2" name="p6" type="radio" value="2">
+          <label class="form-check-label" for="p6_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p6_3" name="p6" type="radio" value="3">
+          <label class="form-check-label" for="p6_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p6_4" name="p6" type="radio" value="4">
+          <label class="form-check-label" for="p6_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p6_5" name="p6" type="radio" value="5">
+          <label class="form-check-label" for="p6_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         7. Seu trabalho exige muito de voc&ecirc; emocionalmente?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p7_1" name="p7" required type="radio" value="1">
+          <label class="form-check-label" for="p7_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p7_2" name="p7" type="radio" value="2">
+          <label class="form-check-label" for="p7_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p7_3" name="p7" type="radio" value="3">
+          <label class="form-check-label" for="p7_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p7_4" name="p7" type="radio" value="4">
+          <label class="form-check-label" for="p7_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p7_5" name="p7" type="radio" value="5">
+          <label class="form-check-label" for="p7_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         8. Seu trabalho exige que voc&ecirc; lide com as emo&ccedil;&otilde;es das outras pessoas?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p8_1" name="p8" required type="radio" value="1">
+          <label class="form-check-label" for="p8_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p8_2" name="p8" type="radio" value="2">
+          <label class="form-check-label" for="p8_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p8_3" name="p8" type="radio" value="3">
+          <label class="form-check-label" for="p8_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p8_4" name="p8" type="radio" value="4">
+          <label class="form-check-label" for="p8_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p8_5" name="p8" type="radio" value="5">
+          <label class="form-check-label" for="p8_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         9. Voc&ecirc; tem influ&ecirc;ncia sobre as decis&otilde;es que s&atilde;o importantes para o seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p9_1" name="p9" required type="radio" value="1">
+          <label class="form-check-label" for="p9_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p9_2" name="p9" type="radio" value="2">
+          <label class="form-check-label" for="p9_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p9_3" name="p9" type="radio" value="3">
+          <label class="form-check-label" for="p9_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p9_4" name="p9" type="radio" value="4">
+          <label class="form-check-label" for="p9_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p9_5" name="p9" type="radio" value="5">
+          <label class="form-check-label" for="p9_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         10. Voc&ecirc; tem influ&ecirc;ncia sobre a quantidade de trabalho que lhe &eacute; atribu&iacute;da?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p10_1" name="p10" required type="radio" value="1">
+          <label class="form-check-label" for="p10_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p10_2" name="p10" type="radio" value="2">
+          <label class="form-check-label" for="p10_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p10_3" name="p10" type="radio" value="3">
+          <label class="form-check-label" for="p10_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p10_4" name="p10" type="radio" value="4">
+          <label class="form-check-label" for="p10_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p10_5" name="p10" type="radio" value="5">
+          <label class="form-check-label" for="p10_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         11. Voc&ecirc; tem influ&ecirc;ncia sobre o seu ritmo de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p11_1" name="p11" required type="radio" value="1">
+          <label class="form-check-label" for="p11_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p11_2" name="p11" type="radio" value="2">
+          <label class="form-check-label" for="p11_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p11_3" name="p11" type="radio" value="3">
+          <label class="form-check-label" for="p11_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p11_4" name="p11" type="radio" value="4">
+          <label class="form-check-label" for="p11_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p11_5" name="p11" type="radio" value="5">
+          <label class="form-check-label" for="p11_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         12. Voc&ecirc; tem influ&ecirc;ncia sobre a forma como o seu trabalho &eacute; realizado?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p12_1" name="p12" required type="radio" value="1">
+          <label class="form-check-label" for="p12_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p12_2" name="p12" type="radio" value="2">
+          <label class="form-check-label" for="p12_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p12_3" name="p12" type="radio" value="3">
+          <label class="form-check-label" for="p12_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p12_4" name="p12" type="radio" value="4">
+          <label class="form-check-label" for="p12_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p12_5" name="p12" type="radio" value="5">
+          <label class="form-check-label" for="p12_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         13. O seu trabalho exige que voc&ecirc; aprenda coisas novas?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p13_1" name="p13" required type="radio" value="1">
+          <label class="form-check-label" for="p13_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p13_2" name="p13" type="radio" value="2">
+          <label class="form-check-label" for="p13_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p13_3" name="p13" type="radio" value="3">
+          <label class="form-check-label" for="p13_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p13_4" name="p13" type="radio" value="4">
+          <label class="form-check-label" for="p13_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p13_5" name="p13" type="radio" value="5">
+          <label class="form-check-label" for="p13_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         14. O seu trabalho exige que voc&ecirc; desenvolva novas compet&ecirc;ncias?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p14_1" name="p14" required type="radio" value="1">
+          <label class="form-check-label" for="p14_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p14_2" name="p14" type="radio" value="2">
+          <label class="form-check-label" for="p14_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p14_3" name="p14" type="radio" value="3">
+          <label class="form-check-label" for="p14_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p14_4" name="p14" type="radio" value="4">
+          <label class="form-check-label" for="p14_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p14_5" name="p14" type="radio" value="5">
+          <label class="form-check-label" for="p14_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         15. O seu trabalho lhe d&aacute; a possibilidade de fazer aquilo que voc&ecirc; faz melhor?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p15_1" name="p15" required type="radio" value="1">
+          <label class="form-check-label" for="p15_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p15_2" name="p15" type="radio" value="2">
+          <label class="form-check-label" for="p15_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p15_3" name="p15" type="radio" value="3">
+          <label class="form-check-label" for="p15_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p15_4" name="p15" type="radio" value="4">
+          <label class="form-check-label" for="p15_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p15_5" name="p15" type="radio" value="5">
+          <label class="form-check-label" for="p15_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         16. Voc&ecirc; &eacute; informado com anteced&ecirc;ncia sobre decis&otilde;es importantes, mudan&ccedil;as ou planos para o futuro?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p16_1" name="p16" required type="radio" value="1">
+          <label class="form-check-label" for="p16_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p16_2" name="p16" type="radio" value="2">
+          <label class="form-check-label" for="p16_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p16_3" name="p16" type="radio" value="3">
+          <label class="form-check-label" for="p16_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p16_4" name="p16" type="radio" value="4">
+          <label class="form-check-label" for="p16_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p16_5" name="p16" type="radio" value="5">
+          <label class="form-check-label" for="p16_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         17. Voc&ecirc; recebe todas as informa&ccedil;&otilde;es necess&aacute;rias para fazer bem o seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p17_1" name="p17" required type="radio" value="1">
+          <label class="form-check-label" for="p17_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p17_2" name="p17" type="radio" value="2">
+          <label class="form-check-label" for="p17_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p17_3" name="p17" type="radio" value="3">
+          <label class="form-check-label" for="p17_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p17_4" name="p17" type="radio" value="4">
+          <label class="form-check-label" for="p17_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p17_5" name="p17" type="radio" value="5">
+          <label class="form-check-label" for="p17_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         18. Voc&ecirc; sabe exatamente quais s&atilde;o as suas &aacute;reas de responsabilidade?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p18_1" name="p18" required type="radio" value="1">
+          <label class="form-check-label" for="p18_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p18_2" name="p18" type="radio" value="2">
+          <label class="form-check-label" for="p18_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p18_3" name="p18" type="radio" value="3">
+          <label class="form-check-label" for="p18_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p18_4" name="p18" type="radio" value="4">
+          <label class="form-check-label" for="p18_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p18_5" name="p18" type="radio" value="5">
+          <label class="form-check-label" for="p18_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="navigation-buttons d-flex justify-content-between mt-4">
+        <div>
+        </div>
+        <button class="btn btn-primary next-btn" data-target="page-2" type="button">
+         Pr&oacute;xima
+        </button>
+       </div>
+      </div>
+      <div class="page-container" id="page-2" style="display: none;">
+       <div class="question-item">
+        <label class="form-label required-field">
+         19. Voc&ecirc; sabe exatamente o que se espera de voc&ecirc; no trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p19_1" name="p19" required type="radio" value="1">
+          <label class="form-check-label" for="p19_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p19_2" name="p19" type="radio" value="2">
+          <label class="form-check-label" for="p19_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p19_3" name="p19" type="radio" value="3">
+          <label class="form-check-label" for="p19_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p19_4" name="p19" type="radio" value="4">
+          <label class="form-check-label" for="p19_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p19_5" name="p19" type="radio" value="5">
+          <label class="form-check-label" for="p19_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         20. Os objetivos do seu trabalho s&atilde;o claros para voc&ecirc;?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p20_1" name="p20" required type="radio" value="1">
+          <label class="form-check-label" for="p20_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p20_2" name="p20" type="radio" value="2">
+          <label class="form-check-label" for="p20_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p20_3" name="p20" type="radio" value="3">
+          <label class="form-check-label" for="p20_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p20_4" name="p20" type="radio" value="4">
+          <label class="form-check-label" for="p20_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p20_5" name="p20" type="radio" value="5">
+          <label class="form-check-label" for="p20_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         21. O seu trabalho &eacute; reconhecido e apreciado pela dire&ccedil;&atilde;o?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p21_1" name="p21" required type="radio" value="1">
+          <label class="form-check-label" for="p21_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p21_2" name="p21" type="radio" value="2">
+          <label class="form-check-label" for="p21_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p21_3" name="p21" type="radio" value="3">
+          <label class="form-check-label" for="p21_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p21_4" name="p21" type="radio" value="4">
+          <label class="form-check-label" for="p21_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p21_5" name="p21" type="radio" value="5">
+          <label class="form-check-label" for="p21_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         22. As suas compet&ecirc;ncias s&atilde;o devidamente valorizadas no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p22_1" name="p22" required type="radio" value="1">
+          <label class="form-check-label" for="p22_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p22_2" name="p22" type="radio" value="2">
+          <label class="form-check-label" for="p22_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p22_3" name="p22" type="radio" value="3">
+          <label class="form-check-label" for="p22_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p22_4" name="p22" type="radio" value="4">
+          <label class="form-check-label" for="p22_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p22_5" name="p22" type="radio" value="5">
+          <label class="form-check-label" for="p22_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         23. Considerando o seu esfor&ccedil;o, voc&ecirc; &eacute; pago de forma justa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p23_1" name="p23" required type="radio" value="1">
+          <label class="form-check-label" for="p23_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p23_2" name="p23" type="radio" value="2">
+          <label class="form-check-label" for="p23_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p23_3" name="p23" type="radio" value="3">
+          <label class="form-check-label" for="p23_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p23_4" name="p23" type="radio" value="4">
+          <label class="form-check-label" for="p23_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p23_5" name="p23" type="radio" value="5">
+          <label class="form-check-label" for="p23_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         24. Voc&ecirc; recebe ordens contradit&oacute;rias?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p24_1" name="p24" required type="radio" value="1">
+          <label class="form-check-label" for="p24_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p24_2" name="p24" type="radio" value="2">
+          <label class="form-check-label" for="p24_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p24_3" name="p24" type="radio" value="3">
+          <label class="form-check-label" for="p24_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p24_4" name="p24" type="radio" value="4">
+          <label class="form-check-label" for="p24_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p24_5" name="p24" type="radio" value="5">
+          <label class="form-check-label" for="p24_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         25. Voc&ecirc; tem que fazer coisas que parecem ser desnecess&aacute;rias?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p25_1" name="p25" required type="radio" value="1">
+          <label class="form-check-label" for="p25_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p25_2" name="p25" type="radio" value="2">
+          <label class="form-check-label" for="p25_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p25_3" name="p25" type="radio" value="3">
+          <label class="form-check-label" for="p25_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p25_4" name="p25" type="radio" value="4">
+          <label class="form-check-label" for="p25_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p25_5" name="p25" type="radio" value="5">
+          <label class="form-check-label" for="p25_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         26. Voc&ecirc; tem tarefas que preferiria que fossem feitas de outra forma?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p26_1" name="p26" required type="radio" value="1">
+          <label class="form-check-label" for="p26_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p26_2" name="p26" type="radio" value="2">
+          <label class="form-check-label" for="p26_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p26_3" name="p26" type="radio" value="3">
+          <label class="form-check-label" for="p26_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p26_4" name="p26" type="radio" value="4">
+          <label class="form-check-label" for="p26_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p26_5" name="p26" type="radio" value="5">
+          <label class="form-check-label" for="p26_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         27. Com que frequ&ecirc;ncia voc&ecirc; recebe ajuda e apoio dos seus colegas?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p27_1" name="p27" required type="radio" value="1">
+          <label class="form-check-label" for="p27_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p27_2" name="p27" type="radio" value="2">
+          <label class="form-check-label" for="p27_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p27_3" name="p27" type="radio" value="3">
+          <label class="form-check-label" for="p27_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p27_4" name="p27" type="radio" value="4">
+          <label class="form-check-label" for="p27_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p27_5" name="p27" type="radio" value="5">
+          <label class="form-check-label" for="p27_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         28. Com que frequ&ecirc;ncia os seus colegas est&atilde;o dispostos a ouvir os seus problemas de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p28_1" name="p28" required type="radio" value="1">
+          <label class="form-check-label" for="p28_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p28_2" name="p28" type="radio" value="2">
+          <label class="form-check-label" for="p28_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p28_3" name="p28" type="radio" value="3">
+          <label class="form-check-label" for="p28_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p28_4" name="p28" type="radio" value="4">
+          <label class="form-check-label" for="p28_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p28_5" name="p28" type="radio" value="5">
+          <label class="form-check-label" for="p28_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         29. Com que frequ&ecirc;ncia voc&ecirc; conversa com os seus colegas sobre como fazer o trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p29_1" name="p29" required type="radio" value="1">
+          <label class="form-check-label" for="p29_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p29_2" name="p29" type="radio" value="2">
+          <label class="form-check-label" for="p29_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p29_3" name="p29" type="radio" value="3">
+          <label class="form-check-label" for="p29_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p29_4" name="p29" type="radio" value="4">
+          <label class="form-check-label" for="p29_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p29_5" name="p29" type="radio" value="5">
+          <label class="form-check-label" for="p29_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         30. Com que frequ&ecirc;ncia voc&ecirc; recebe ajuda e apoio do seu superior imediato?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p30_1" name="p30" required type="radio" value="1">
+          <label class="form-check-label" for="p30_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p30_2" name="p30" type="radio" value="2">
+          <label class="form-check-label" for="p30_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p30_3" name="p30" type="radio" value="3">
+          <label class="form-check-label" for="p30_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p30_4" name="p30" type="radio" value="4">
+          <label class="form-check-label" for="p30_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p30_5" name="p30" type="radio" value="5">
+          <label class="form-check-label" for="p30_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         31. Com que frequ&ecirc;ncia o seu superior imediato est&aacute; disposto a ouvir os seus problemas de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p31_1" name="p31" required type="radio" value="1">
+          <label class="form-check-label" for="p31_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p31_2" name="p31" type="radio" value="2">
+          <label class="form-check-label" for="p31_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p31_3" name="p31" type="radio" value="3">
+          <label class="form-check-label" for="p31_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p31_4" name="p31" type="radio" value="4">
+          <label class="form-check-label" for="p31_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p31_5" name="p31" type="radio" value="5">
+          <label class="form-check-label" for="p31_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         32. Com que frequ&ecirc;ncia voc&ecirc; conversa com o seu superior imediato sobre como fazer o trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p32_1" name="p32" required type="radio" value="1">
+          <label class="form-check-label" for="p32_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p32_2" name="p32" type="radio" value="2">
+          <label class="form-check-label" for="p32_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p32_3" name="p32" type="radio" value="3">
+          <label class="form-check-label" for="p32_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p32_4" name="p32" type="radio" value="4">
+          <label class="form-check-label" for="p32_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p32_5" name="p32" type="radio" value="5">
+          <label class="form-check-label" for="p32_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         33. Existe um bom ambiente de coopera&ccedil;&atilde;o entre os colegas de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p33_1" name="p33" required type="radio" value="1">
+          <label class="form-check-label" for="p33_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p33_2" name="p33" type="radio" value="2">
+          <label class="form-check-label" for="p33_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p33_3" name="p33" type="radio" value="3">
+          <label class="form-check-label" for="p33_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p33_4" name="p33" type="radio" value="4">
+          <label class="form-check-label" for="p33_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p33_5" name="p33" type="radio" value="5">
+          <label class="form-check-label" for="p33_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         34. Voc&ecirc; se sente parte de uma comunidade no seu local de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p34_1" name="p34" required type="radio" value="1">
+          <label class="form-check-label" for="p34_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p34_2" name="p34" type="radio" value="2">
+          <label class="form-check-label" for="p34_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p34_3" name="p34" type="radio" value="3">
+          <label class="form-check-label" for="p34_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p34_4" name="p34" type="radio" value="4">
+          <label class="form-check-label" for="p34_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p34_5" name="p34" type="radio" value="5">
+          <label class="form-check-label" for="p34_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         35. H&aacute; um bom esp&iacute;rito de equipa no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p35_1" name="p35" required type="radio" value="1">
+          <label class="form-check-label" for="p35_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p35_2" name="p35" type="radio" value="2">
+          <label class="form-check-label" for="p35_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p35_3" name="p35" type="radio" value="3">
+          <label class="form-check-label" for="p35_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p35_4" name="p35" type="radio" value="4">
+          <label class="form-check-label" for="p35_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p35_5" name="p35" type="radio" value="5">
+          <label class="form-check-label" for="p35_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         36. At&eacute; que ponto voc&ecirc; diria que o seu superior imediato &eacute; bom a planejar o trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p36_1" name="p36" required type="radio" value="1">
+          <label class="form-check-label" for="p36_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p36_2" name="p36" type="radio" value="2">
+          <label class="form-check-label" for="p36_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p36_3" name="p36" type="radio" value="3">
+          <label class="form-check-label" for="p36_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p36_4" name="p36" type="radio" value="4">
+          <label class="form-check-label" for="p36_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p36_5" name="p36" type="radio" value="5">
+          <label class="form-check-label" for="p36_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="navigation-buttons d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary prev-btn" data-target="page-1" type="button">
+         Anterior
+        </button>
+        <button class="btn btn-primary next-btn" data-target="page-3" type="button">
+         Pr&oacute;xima
+        </button>
+       </div>
+      </div>
+      <div class="page-container" id="page-3" style="display: none;">
+       <div class="question-item">
+        <label class="form-label required-field">
+         37. At&eacute; que ponto voc&ecirc; diria que o seu superior imediato &eacute; bom a resolver conflitos?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p37_1" name="p37" required type="radio" value="1">
+          <label class="form-check-label" for="p37_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p37_2" name="p37" type="radio" value="2">
+          <label class="form-check-label" for="p37_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p37_3" name="p37" type="radio" value="3">
+          <label class="form-check-label" for="p37_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p37_4" name="p37" type="radio" value="4">
+          <label class="form-check-label" for="p37_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p37_5" name="p37" type="radio" value="5">
+          <label class="form-check-label" for="p37_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         38. At&eacute; que ponto voc&ecirc; diria que o seu superior imediato &eacute; bom a distribuir o trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p38_1" name="p38" required type="radio" value="1">
+          <label class="form-check-label" for="p38_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p38_2" name="p38" type="radio" value="2">
+          <label class="form-check-label" for="p38_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p38_3" name="p38" type="radio" value="3">
+          <label class="form-check-label" for="p38_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p38_4" name="p38" type="radio" value="4">
+          <label class="form-check-label" for="p38_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p38_5" name="p38" type="radio" value="5">
+          <label class="form-check-label" for="p38_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         39. At&eacute; que ponto voc&ecirc; diria que o seu superior imediato &eacute; bom a comunicar?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p39_1" name="p39" required type="radio" value="1">
+          <label class="form-check-label" for="p39_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p39_2" name="p39" type="radio" value="2">
+          <label class="form-check-label" for="p39_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p39_3" name="p39" type="radio" value="3">
+          <label class="form-check-label" for="p39_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p39_4" name="p39" type="radio" value="4">
+          <label class="form-check-label" for="p39_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p39_5" name="p39" type="radio" value="5">
+          <label class="form-check-label" for="p39_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         40. Existe muito mexerico (fofoca) no seu local de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p40_1" name="p40" required type="radio" value="1">
+          <label class="form-check-label" for="p40_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p40_2" name="p40" type="radio" value="2">
+          <label class="form-check-label" for="p40_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p40_3" name="p40" type="radio" value="3">
+          <label class="form-check-label" for="p40_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p40_4" name="p40" type="radio" value="4">
+          <label class="form-check-label" for="p40_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p40_5" name="p40" type="radio" value="5">
+          <label class="form-check-label" for="p40_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         41. Existe muita intriga no seu local de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p41_1" name="p41" required type="radio" value="1">
+          <label class="form-check-label" for="p41_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p41_2" name="p41" type="radio" value="2">
+          <label class="form-check-label" for="p41_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p41_3" name="p41" type="radio" value="3">
+          <label class="form-check-label" for="p41_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p41_4" name="p41" type="radio" value="4">
+          <label class="form-check-label" for="p41_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p41_5" name="p41" type="radio" value="5">
+          <label class="form-check-label" for="p41_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         42. As pessoas apunhalam-se pelas costas no seu local de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p42_1" name="p42" required type="radio" value="1">
+          <label class="form-check-label" for="p42_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p42_2" name="p42" type="radio" value="2">
+          <label class="form-check-label" for="p42_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p42_3" name="p42" type="radio" value="3">
+          <label class="form-check-label" for="p42_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p42_4" name="p42" type="radio" value="4">
+          <label class="form-check-label" for="p42_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p42_5" name="p42" type="radio" value="5">
+          <label class="form-check-label" for="p42_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         43. Voc&ecirc; confia nas informa&ccedil;&otilde;es que v&ecirc;m da dire&ccedil;&atilde;o?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p43_1" name="p43" required type="radio" value="1">
+          <label class="form-check-label" for="p43_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p43_2" name="p43" type="radio" value="2">
+          <label class="form-check-label" for="p43_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p43_3" name="p43" type="radio" value="3">
+          <label class="form-check-label" for="p43_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p43_4" name="p43" type="radio" value="4">
+          <label class="form-check-label" for="p43_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p43_5" name="p43" type="radio" value="5">
+          <label class="form-check-label" for="p43_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         44. A dire&ccedil;&atilde;o confia nos funcion&aacute;rios?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p44_1" name="p44" required type="radio" value="1">
+          <label class="form-check-label" for="p44_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p44_2" name="p44" type="radio" value="2">
+          <label class="form-check-label" for="p44_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p44_3" name="p44" type="radio" value="3">
+          <label class="form-check-label" for="p44_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p44_4" name="p44" type="radio" value="4">
+          <label class="form-check-label" for="p44_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p44_5" name="p44" type="radio" value="5">
+          <label class="form-check-label" for="p44_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         45. A dire&ccedil;&atilde;o trata os funcion&aacute;rios de forma justa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p45_1" name="p45" required type="radio" value="1">
+          <label class="form-check-label" for="p45_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p45_2" name="p45" type="radio" value="2">
+          <label class="form-check-label" for="p45_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p45_3" name="p45" type="radio" value="3">
+          <label class="form-check-label" for="p45_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p45_4" name="p45" type="radio" value="4">
+          <label class="form-check-label" for="p45_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p45_5" name="p45" type="radio" value="5">
+          <label class="form-check-label" for="p45_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         46. A dire&ccedil;&atilde;o &eacute; honesta e sincera na forma como lida com os funcion&aacute;rios?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p46_1" name="p46" required type="radio" value="1">
+          <label class="form-check-label" for="p46_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p46_2" name="p46" type="radio" value="2">
+          <label class="form-check-label" for="p46_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p46_3" name="p46" type="radio" value="3">
+          <label class="form-check-label" for="p46_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p46_4" name="p46" type="radio" value="4">
+          <label class="form-check-label" for="p46_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p46_5" name="p46" type="radio" value="5">
+          <label class="form-check-label" for="p46_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         47. Voc&ecirc; &eacute; tratado com respeito no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p47_1" name="p47" required type="radio" value="1">
+          <label class="form-check-label" for="p47_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p47_2" name="p47" type="radio" value="2">
+          <label class="form-check-label" for="p47_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p47_3" name="p47" type="radio" value="3">
+          <label class="form-check-label" for="p47_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p47_4" name="p47" type="radio" value="4">
+          <label class="form-check-label" for="p47_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p47_5" name="p47" type="radio" value="5">
+          <label class="form-check-label" for="p47_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         48. As decis&otilde;es relativas a voc&ecirc; s&atilde;o tomadas de forma justa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p48_1" name="p48" required type="radio" value="1">
+          <label class="form-check-label" for="p48_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p48_2" name="p48" type="radio" value="2">
+          <label class="form-check-label" for="p48_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p48_3" name="p48" type="radio" value="3">
+          <label class="form-check-label" for="p48_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p48_4" name="p48" type="radio" value="4">
+          <label class="form-check-label" for="p48_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p48_5" name="p48" type="radio" value="5">
+          <label class="form-check-label" for="p48_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         49. A forma como voc&ecirc; &eacute; tratado no trabalho &eacute; justa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p49_1" name="p49" required type="radio" value="1">
+          <label class="form-check-label" for="p49_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p49_2" name="p49" type="radio" value="2">
+          <label class="form-check-label" for="p49_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p49_3" name="p49" type="radio" value="3">
+          <label class="form-check-label" for="p49_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p49_4" name="p49" type="radio" value="4">
+          <label class="form-check-label" for="p49_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p49_5" name="p49" type="radio" value="5">
+          <label class="form-check-label" for="p49_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         50. Voc&ecirc; &eacute; tratado como igual no seu local de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p50_1" name="p50" required type="radio" value="1">
+          <label class="form-check-label" for="p50_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p50_2" name="p50" type="radio" value="2">
+          <label class="form-check-label" for="p50_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p50_3" name="p50" type="radio" value="3">
+          <label class="form-check-label" for="p50_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p50_4" name="p50" type="radio" value="4">
+          <label class="form-check-label" for="p50_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p50_5" name="p50" type="radio" value="5">
+          <label class="form-check-label" for="p50_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         51. Voc&ecirc; se sente capaz de lidar com as exig&ecirc;ncias do seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p51_1" name="p51" required type="radio" value="1">
+          <label class="form-check-label" for="p51_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p51_2" name="p51" type="radio" value="2">
+          <label class="form-check-label" for="p51_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p51_3" name="p51" type="radio" value="3">
+          <label class="form-check-label" for="p51_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p51_4" name="p51" type="radio" value="4">
+          <label class="form-check-label" for="p51_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p51_5" name="p51" type="radio" value="5">
+          <label class="form-check-label" for="p51_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         52. Voc&ecirc; se sente confiante de que pode lidar com quaisquer problemas que surjam no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p52_1" name="p52" required type="radio" value="1">
+          <label class="form-check-label" for="p52_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p52_2" name="p52" type="radio" value="2">
+          <label class="form-check-label" for="p52_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p52_3" name="p52" type="radio" value="3">
+          <label class="form-check-label" for="p52_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p52_4" name="p52" type="radio" value="4">
+          <label class="form-check-label" for="p52_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p52_5" name="p52" type="radio" value="5">
+          <label class="form-check-label" for="p52_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         53. O seu trabalho tem significado para voc&ecirc;?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p53_1" name="p53" required type="radio" value="1">
+          <label class="form-check-label" for="p53_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p53_2" name="p53" type="radio" value="2">
+          <label class="form-check-label" for="p53_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p53_3" name="p53" type="radio" value="3">
+          <label class="form-check-label" for="p53_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p53_4" name="p53" type="radio" value="4">
+          <label class="form-check-label" for="p53_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p53_5" name="p53" type="radio" value="5">
+          <label class="form-check-label" for="p53_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="navigation-buttons d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary prev-btn" data-target="page-2" type="button">
+         Anterior
+        </button>
+        <button class="btn btn-primary next-btn" data-target="page-4" type="button">
+         Pr&oacute;xima
+        </button>
+       </div>
+      </div>
+      <div class="page-container" id="page-4" style="display: none;">
+       <div class="question-item">
+        <label class="form-label required-field">
+         54. Voc&ecirc; sente que o trabalho que faz &eacute; importante?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p54_1" name="p54" required type="radio" value="1">
+          <label class="form-check-label" for="p54_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p54_2" name="p54" type="radio" value="2">
+          <label class="form-check-label" for="p54_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p54_3" name="p54" type="radio" value="3">
+          <label class="form-check-label" for="p54_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p54_4" name="p54" type="radio" value="4">
+          <label class="form-check-label" for="p54_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p54_5" name="p54" type="radio" value="5">
+          <label class="form-check-label" for="p54_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         55. Voc&ecirc; se sente motivado e envolvido no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p55_1" name="p55" required type="radio" value="1">
+          <label class="form-check-label" for="p55_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p55_2" name="p55" type="radio" value="2">
+          <label class="form-check-label" for="p55_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p55_3" name="p55" type="radio" value="3">
+          <label class="form-check-label" for="p55_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p55_4" name="p55" type="radio" value="4">
+          <label class="form-check-label" for="p55_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p55_5" name="p55" type="radio" value="5">
+          <label class="form-check-label" for="p55_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         56. Voc&ecirc; falaria bem da sua empresa para outras pessoas?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p56_1" name="p56" required type="radio" value="1">
+          <label class="form-check-label" for="p56_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p56_2" name="p56" type="radio" value="2">
+          <label class="form-check-label" for="p56_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p56_3" name="p56" type="radio" value="3">
+          <label class="form-check-label" for="p56_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p56_4" name="p56" type="radio" value="4">
+          <label class="form-check-label" for="p56_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p56_5" name="p56" type="radio" value="5">
+          <label class="form-check-label" for="p56_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         57. Voc&ecirc; se sentiria feliz em passar o resto da sua carreira nesta empresa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p57_1" name="p57" required type="radio" value="1">
+          <label class="form-check-label" for="p57_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p57_2" name="p57" type="radio" value="2">
+          <label class="form-check-label" for="p57_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p57_3" name="p57" type="radio" value="3">
+          <label class="form-check-label" for="p57_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p57_4" name="p57" type="radio" value="4">
+          <label class="form-check-label" for="p57_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p57_5" name="p57" type="radio" value="5">
+          <label class="form-check-label" for="p57_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         58. Voc&ecirc; se sente leal &agrave; sua empresa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p58_1" name="p58" required type="radio" value="1">
+          <label class="form-check-label" for="p58_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p58_2" name="p58" type="radio" value="2">
+          <label class="form-check-label" for="p58_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p58_3" name="p58" type="radio" value="3">
+          <label class="form-check-label" for="p58_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p58_4" name="p58" type="radio" value="4">
+          <label class="form-check-label" for="p58_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p58_5" name="p58" type="radio" value="5">
+          <label class="form-check-label" for="p58_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         59. No geral, qu&atilde;o satisfeito voc&ecirc; est&aacute; com o seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p59_1" name="p59" required type="radio" value="1">
+          <label class="form-check-label" for="p59_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p59_2" name="p59" type="radio" value="2">
+          <label class="form-check-label" for="p59_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p59_3" name="p59" type="radio" value="3">
+          <label class="form-check-label" for="p59_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p59_4" name="p59" type="radio" value="4">
+          <label class="form-check-label" for="p59_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p59_5" name="p59" type="radio" value="5">
+          <label class="form-check-label" for="p59_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         60. Qu&atilde;o satisfeito voc&ecirc; est&aacute; com as suas perspectivas de carreira?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p60_1" name="p60" required type="radio" value="1">
+          <label class="form-check-label" for="p60_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p60_2" name="p60" type="radio" value="2">
+          <label class="form-check-label" for="p60_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p60_3" name="p60" type="radio" value="3">
+          <label class="form-check-label" for="p60_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p60_4" name="p60" type="radio" value="4">
+          <label class="form-check-label" for="p60_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p60_5" name="p60" type="radio" value="5">
+          <label class="form-check-label" for="p60_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         61. Qu&atilde;o satisfeito voc&ecirc; est&aacute; com o seu sal&aacute;rio?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p61_1" name="p61" required type="radio" value="1">
+          <label class="form-check-label" for="p61_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p61_2" name="p61" type="radio" value="2">
+          <label class="form-check-label" for="p61_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p61_3" name="p61" type="radio" value="3">
+          <label class="form-check-label" for="p61_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p61_4" name="p61" type="radio" value="4">
+          <label class="form-check-label" for="p61_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p61_5" name="p61" type="radio" value="5">
+          <label class="form-check-label" for="p61_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         62. Qu&atilde;o satisfeito voc&ecirc; est&aacute; com as suas condi&ccedil;&otilde;es de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p62_1" name="p62" required type="radio" value="1">
+          <label class="form-check-label" for="p62_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p62_2" name="p62" type="radio" value="2">
+          <label class="form-check-label" for="p62_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p62_3" name="p62" type="radio" value="3">
+          <label class="form-check-label" for="p62_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p62_4" name="p62" type="radio" value="4">
+          <label class="form-check-label" for="p62_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p62_5" name="p62" type="radio" value="5">
+          <label class="form-check-label" for="p62_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         63. Voc&ecirc; est&aacute; preocupado em perder o seu emprego?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p63_1" name="p63" required type="radio" value="1">
+          <label class="form-check-label" for="p63_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p63_2" name="p63" type="radio" value="2">
+          <label class="form-check-label" for="p63_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p63_3" name="p63" type="radio" value="3">
+          <label class="form-check-label" for="p63_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p63_4" name="p63" type="radio" value="4">
+          <label class="form-check-label" for="p63_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p63_5" name="p63" type="radio" value="5">
+          <label class="form-check-label" for="p63_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         64. Voc&ecirc; est&aacute; preocupado em ser transferido contra a sua vontade para outro emprego?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p64_1" name="p64" required type="radio" value="1">
+          <label class="form-check-label" for="p64_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p64_2" name="p64" type="radio" value="2">
+          <label class="form-check-label" for="p64_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p64_3" name="p64" type="radio" value="3">
+          <label class="form-check-label" for="p64_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p64_4" name="p64" type="radio" value="4">
+          <label class="form-check-label" for="p64_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p64_5" name="p64" type="radio" value="5">
+          <label class="form-check-label" for="p64_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         65. Com que frequ&ecirc;ncia voc&ecirc; considera a sua sa&uacute;de como boa?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p65_1" name="p65" required type="radio" value="1">
+          <label class="form-check-label" for="p65_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p65_2" name="p65" type="radio" value="2">
+          <label class="form-check-label" for="p65_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p65_3" name="p65" type="radio" value="3">
+          <label class="form-check-label" for="p65_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p65_4" name="p65" type="radio" value="4">
+          <label class="form-check-label" for="p65_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p65_5" name="p65" type="radio" value="5">
+          <label class="form-check-label" for="p65_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         66. Com que frequ&ecirc;ncia o seu trabalho interfere na sua vida familiar/pessoal?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p66_1" name="p66" required type="radio" value="1">
+          <label class="form-check-label" for="p66_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p66_2" name="p66" type="radio" value="2">
+          <label class="form-check-label" for="p66_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p66_3" name="p66" type="radio" value="3">
+          <label class="form-check-label" for="p66_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p66_4" name="p66" type="radio" value="4">
+          <label class="form-check-label" for="p66_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p66_5" name="p66" type="radio" value="5">
+          <label class="form-check-label" for="p66_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         67. Com que frequ&ecirc;ncia voc&ecirc; se sente demasiado cansado depois do trabalho para participar nas atividades familiares/pessoais?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p67_1" name="p67" required type="radio" value="1">
+          <label class="form-check-label" for="p67_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p67_2" name="p67" type="radio" value="2">
+          <label class="form-check-label" for="p67_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p67_3" name="p67" type="radio" value="3">
+          <label class="form-check-label" for="p67_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p67_4" name="p67" type="radio" value="4">
+          <label class="form-check-label" for="p67_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p67_5" name="p67" type="radio" value="5">
+          <label class="form-check-label" for="p67_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         68. Com que frequ&ecirc;ncia as exig&ecirc;ncias do seu trabalho dificultam a sua vida familiar/pessoal?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p68_1" name="p68" required type="radio" value="1">
+          <label class="form-check-label" for="p68_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p68_2" name="p68" type="radio" value="2">
+          <label class="form-check-label" for="p68_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p68_3" name="p68" type="radio" value="3">
+          <label class="form-check-label" for="p68_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p68_4" name="p68" type="radio" value="4">
+          <label class="form-check-label" for="p68_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p68_5" name="p68" type="radio" value="5">
+          <label class="form-check-label" for="p68_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         69. Com que frequ&ecirc;ncia as exig&ecirc;ncias da sua vida familiar/pessoal dificultam o seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p69_1" name="p69" required type="radio" value="1">
+          <label class="form-check-label" for="p69_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p69_2" name="p69" type="radio" value="2">
+          <label class="form-check-label" for="p69_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p69_3" name="p69" type="radio" value="3">
+          <label class="form-check-label" for="p69_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p69_4" name="p69" type="radio" value="4">
+          <label class="form-check-label" for="p69_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p69_5" name="p69" type="radio" value="5">
+          <label class="form-check-label" for="p69_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         70. Com que frequ&ecirc;ncia voc&ecirc; teve dificuldade em adormecer?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p70_1" name="p70" required type="radio" value="1">
+          <label class="form-check-label" for="p70_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p70_2" name="p70" type="radio" value="2">
+          <label class="form-check-label" for="p70_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p70_3" name="p70" type="radio" value="3">
+          <label class="form-check-label" for="p70_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p70_4" name="p70" type="radio" value="4">
+          <label class="form-check-label" for="p70_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p70_5" name="p70" type="radio" value="5">
+          <label class="form-check-label" for="p70_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="navigation-buttons d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary prev-btn" data-target="page-3" type="button">
+         Anterior
+        </button>
+        <button class="btn btn-primary next-btn" data-target="page-5" type="button">
+         Pr&oacute;xima
+        </button>
+       </div>
+      </div>
+      <div class="page-container" id="page-5" style="display: none;">
+       <div class="question-item">
+        <label class="form-label required-field">
+         71. Com que frequ&ecirc;ncia voc&ecirc; acordou v&aacute;rias vezes durante a noite?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p71_1" name="p71" required type="radio" value="1">
+          <label class="form-check-label" for="p71_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p71_2" name="p71" type="radio" value="2">
+          <label class="form-check-label" for="p71_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p71_3" name="p71" type="radio" value="3">
+          <label class="form-check-label" for="p71_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p71_4" name="p71" type="radio" value="4">
+          <label class="form-check-label" for="p71_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p71_5" name="p71" type="radio" value="5">
+          <label class="form-check-label" for="p71_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         72. Com que frequ&ecirc;ncia voc&ecirc; acordou demasiado cedo e n&atilde;o conseguiu voltar a adormecer?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p72_1" name="p72" required type="radio" value="1">
+          <label class="form-check-label" for="p72_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p72_2" name="p72" type="radio" value="2">
+          <label class="form-check-label" for="p72_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p72_3" name="p72" type="radio" value="3">
+          <label class="form-check-label" for="p72_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p72_4" name="p72" type="radio" value="4">
+          <label class="form-check-label" for="p72_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p72_5" name="p72" type="radio" value="5">
+          <label class="form-check-label" for="p72_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         73. Com que frequ&ecirc;ncia voc&ecirc; se sentiu cansado e sem descanso ao acordar de manh&atilde;?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p73_1" name="p73" required type="radio" value="1">
+          <label class="form-check-label" for="p73_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p73_2" name="p73" type="radio" value="2">
+          <label class="form-check-label" for="p73_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p73_3" name="p73" type="radio" value="3">
+          <label class="form-check-label" for="p73_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p73_4" name="p73" type="radio" value="4">
+          <label class="form-check-label" for="p73_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p73_5" name="p73" type="radio" value="5">
+          <label class="form-check-label" for="p73_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         74. Com que frequ&ecirc;ncia voc&ecirc; se sentiu esgotado no final de um dia de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p74_1" name="p74" required type="radio" value="1">
+          <label class="form-check-label" for="p74_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p74_2" name="p74" type="radio" value="2">
+          <label class="form-check-label" for="p74_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p74_3" name="p74" type="radio" value="3">
+          <label class="form-check-label" for="p74_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p74_4" name="p74" type="radio" value="4">
+          <label class="form-check-label" for="p74_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p74_5" name="p74" type="radio" value="5">
+          <label class="form-check-label" for="p74_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         75. Com que frequ&ecirc;ncia voc&ecirc; se sentiu exausto de manh&atilde;, s&oacute; de pensar em ter que enfrentar outro dia de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p75_1" name="p75" required type="radio" value="1">
+          <label class="form-check-label" for="p75_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p75_2" name="p75" type="radio" value="2">
+          <label class="form-check-label" for="p75_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p75_3" name="p75" type="radio" value="3">
+          <label class="form-check-label" for="p75_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p75_4" name="p75" type="radio" value="4">
+          <label class="form-check-label" for="p75_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p75_5" name="p75" type="radio" value="5">
+          <label class="form-check-label" for="p75_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         76. Com que frequ&ecirc;ncia voc&ecirc; se sentiu emocionalmente esgotado pelo seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p76_1" name="p76" required type="radio" value="1">
+          <label class="form-check-label" for="p76_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p76_2" name="p76" type="radio" value="2">
+          <label class="form-check-label" for="p76_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p76_3" name="p76" type="radio" value="3">
+          <label class="form-check-label" for="p76_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p76_4" name="p76" type="radio" value="4">
+          <label class="form-check-label" for="p76_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p76_5" name="p76" type="radio" value="5">
+          <label class="form-check-label" for="p76_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         77. Com que frequ&ecirc;ncia voc&ecirc; sentiu que o seu trabalho o est&aacute; a desgastar?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p77_1" name="p77" required type="radio" value="1">
+          <label class="form-check-label" for="p77_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p77_2" name="p77" type="radio" value="2">
+          <label class="form-check-label" for="p77_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p77_3" name="p77" type="radio" value="3">
+          <label class="form-check-label" for="p77_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p77_4" name="p77" type="radio" value="4">
+          <label class="form-check-label" for="p77_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p77_5" name="p77" type="radio" value="5">
+          <label class="form-check-label" for="p77_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         78. Com que frequ&ecirc;ncia voc&ecirc; se sentiu tenso?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p78_1" name="p78" required type="radio" value="1">
+          <label class="form-check-label" for="p78_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p78_2" name="p78" type="radio" value="2">
+          <label class="form-check-label" for="p78_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p78_3" name="p78" type="radio" value="3">
+          <label class="form-check-label" for="p78_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p78_4" name="p78" type="radio" value="4">
+          <label class="form-check-label" for="p78_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p78_5" name="p78" type="radio" value="5">
+          <label class="form-check-label" for="p78_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         79. Com que frequ&ecirc;ncia voc&ecirc; se sentiu estressado?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p79_1" name="p79" required type="radio" value="1">
+          <label class="form-check-label" for="p79_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p79_2" name="p79" type="radio" value="2">
+          <label class="form-check-label" for="p79_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p79_3" name="p79" type="radio" value="3">
+          <label class="form-check-label" for="p79_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p79_4" name="p79" type="radio" value="4">
+          <label class="form-check-label" for="p79_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p79_5" name="p79" type="radio" value="5">
+          <label class="form-check-label" for="p79_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         80. Com que frequ&ecirc;ncia voc&ecirc; se sentiu irritado?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p80_1" name="p80" required type="radio" value="1">
+          <label class="form-check-label" for="p80_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p80_2" name="p80" type="radio" value="2">
+          <label class="form-check-label" for="p80_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p80_3" name="p80" type="radio" value="3">
+          <label class="form-check-label" for="p80_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p80_4" name="p80" type="radio" value="4">
+          <label class="form-check-label" for="p80_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p80_5" name="p80" type="radio" value="5">
+          <label class="form-check-label" for="p80_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         81. Com que frequ&ecirc;ncia voc&ecirc; se sentiu pressionado?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p81_1" name="p81" required type="radio" value="1">
+          <label class="form-check-label" for="p81_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p81_2" name="p81" type="radio" value="2">
+          <label class="form-check-label" for="p81_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p81_3" name="p81" type="radio" value="3">
+          <label class="form-check-label" for="p81_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p81_4" name="p81" type="radio" value="4">
+          <label class="form-check-label" for="p81_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p81_5" name="p81" type="radio" value="5">
+          <label class="form-check-label" for="p81_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         82. Com que frequ&ecirc;ncia voc&ecirc; foi exposto a amea&ccedil;as de viol&ecirc;ncia no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p82_1" name="p82" required type="radio" value="1">
+          <label class="form-check-label" for="p82_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p82_2" name="p82" type="radio" value="2">
+          <label class="form-check-label" for="p82_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p82_3" name="p82" type="radio" value="3">
+          <label class="form-check-label" for="p82_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p82_4" name="p82" type="radio" value="4">
+          <label class="form-check-label" for="p82_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p82_5" name="p82" type="radio" value="5">
+          <label class="form-check-label" for="p82_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         83. Com que frequ&ecirc;ncia voc&ecirc; foi exposto a viol&ecirc;ncia f&iacute;sica no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p83_1" name="p83" required type="radio" value="1">
+          <label class="form-check-label" for="p83_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p83_2" name="p83" type="radio" value="2">
+          <label class="form-check-label" for="p83_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p83_3" name="p83" type="radio" value="3">
+          <label class="form-check-label" for="p83_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p83_4" name="p83" type="radio" value="4">
+          <label class="form-check-label" for="p83_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p83_5" name="p83" type="radio" value="5">
+          <label class="form-check-label" for="p83_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         84. Com que frequ&ecirc;ncia voc&ecirc; foi exposto a bullying (ass&eacute;dio moral) no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p84_1" name="p84" required type="radio" value="1">
+          <label class="form-check-label" for="p84_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p84_2" name="p84" type="radio" value="2">
+          <label class="form-check-label" for="p84_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p84_3" name="p84" type="radio" value="3">
+          <label class="form-check-label" for="p84_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p84_4" name="p84" type="radio" value="4">
+          <label class="form-check-label" for="p84_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p84_5" name="p84" type="radio" value="5">
+          <label class="form-check-label" for="p84_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         85. Com que frequ&ecirc;ncia voc&ecirc; foi exposto a aten&ccedil;&atilde;o sexual indesejada no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p85_1" name="p85" required type="radio" value="1">
+          <label class="form-check-label" for="p85_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p85_2" name="p85" type="radio" value="2">
+          <label class="form-check-label" for="p85_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p85_3" name="p85" type="radio" value="3">
+          <label class="form-check-label" for="p85_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p85_4" name="p85" type="radio" value="4">
+          <label class="form-check-label" for="p85_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p85_5" name="p85" type="radio" value="5">
+          <label class="form-check-label" for="p85_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         86. Com que frequ&ecirc;ncia voc&ecirc; foi exposto a discrimina&ccedil;&atilde;o no seu trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p86_1" name="p86" required type="radio" value="1">
+          <label class="form-check-label" for="p86_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p86_2" name="p86" type="radio" value="2">
+          <label class="form-check-label" for="p86_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p86_3" name="p86" type="radio" value="3">
+          <label class="form-check-label" for="p86_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p86_4" name="p86" type="radio" value="4">
+          <label class="form-check-label" for="p86_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p86_5" name="p86" type="radio" value="5">
+          <label class="form-check-label" for="p86_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="question-item">
+        <label class="form-label required-field">
+         87. Voc&ecirc; j&aacute; foi exposto a ass&eacute;dio sexual indesejado no seu local de trabalho?
+        </label>
+        <div class="radio-options">
+         <div class="radio-option">
+          <input class="form-check-input" id="p87_1" name="p87" required type="radio" value="1">
+          <label class="form-check-label" for="p87_1">
+           Nunca/quase nunca
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p87_2" name="p87" type="radio" value="2">
+          <label class="form-check-label" for="p87_2">
+           Raramente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p87_3" name="p87" type="radio" value="3">
+          <label class="form-check-label" for="p87_3">
+           &Agrave;s vezes
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p87_4" name="p87" type="radio" value="4">
+          <label class="form-check-label" for="p87_4">
+           Frequentemente
+          </label>
+         </div>
+         <div class="radio-option">
+          <input class="form-check-input" id="p87_5" name="p87" type="radio" value="5">
+          <label class="form-check-label" for="p87_5">
+           Sempre
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="navigation-buttons d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary prev-btn" data-target="page-4" type="button">
+         Anterior
+        </button>
+        <button class="btn btn-success" type="submit">
+         Enviar Respostas
+        </button>
+       </div>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+  <!-- Scripts Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script>
+   // Verificar se o Firebase está disponível
+        document.addEventListener("DOMContentLoaded", function() {
+            // Verificar se o Firebase está definido
+            if (typeof firebase === 'undefined') {
+                console.error('Firebase não está definido. Verifique se os scripts do Firebase foram carregados corretamente.');
+                alert('Erro ao carregar o Firebase. Por favor, recarregue a página ou contate o administrador.');
+                return;
+            }
+            
+            try {
+                // Script do formulário adaptado para Firebase
+                const form = document.getElementById("copsoq-form");
+                const progressBar = document.getElementById("progress-bar");
+                const formContainer = form.parentElement; // Para substituir o form por mensagens
+                const submitButton = form.querySelector("button[type=\"submit\"]"); // Assumindo que há um botão submit
+
+                // Initialize Firebase (se ainda não estiver inicializado)
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(firebaseConfig);
+                }
+                
+                const database = firebase.database();
+                const respostasRef = database.ref("respostas");
+
+                const totalQuestions = 87 + 3; // 87 perguntas + 3 demográficas
+                const inputs = form.querySelectorAll("input[type=\"radio\"], select");
+
+                function updateProgress() {
+                    let answeredCount = 0;
+                    const questionsAnswered = new Set();
+
+                    inputs.forEach((input) => {
+                        if (input.tagName === "SELECT") {
+                            if (input.value !== "") {
+                                questionsAnswered.add(input.name);
+                            }
+                        } else if (input.type === "radio") {
+                            if (input.checked) {
+                                questionsAnswered.add(input.name);
+                            }
+                        }
+                    });
+
+                    answeredCount = questionsAnswered.size;
+                    const progress = Math.round((answeredCount / totalQuestions) * 100);
+                    progressBar.style.width = progress + "%";
+                    progressBar.textContent = progress + "%";
+                    progressBar.setAttribute("aria-valuenow", progress);
+                }
+
+                inputs.forEach((input) => {
+                    input.addEventListener("change", updateProgress);
+                });
+
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault(); // Prevent default form submission
+
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.textContent = "Enviando...";
+                    }
+
+                    // Captura o parâmetro 'empresa' da URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const nomeEmpresa = urlParams.get("empresa") || "Desconhecida"; // Usa "Desconhecida" se o parâmetro não existir
+
+                    const formData = new FormData(form);
+                    const dataObject = {};
+                    formData.forEach((value, key) => {
+                        dataObject[key] = value;
+                    });
+                    // Adiciona um timestamp para identificar unicamente a resposta
+                    dataObject.timestamp = new Date().toISOString();
+                    // Adiciona o nome da empresa capturado da URL
+                    dataObject.empresa = nomeEmpresa;
+
+                    console.log("Enviando dados para o Firebase:", dataObject);
+
+                    // Envia para o Firebase Realtime Database
+                    respostasRef
+                        .push(dataObject)
+                        .then(() => {
+                            console.log("Success! Data sent to Firebase.");
+                            // Redirecionamento para a página de agradecimento
+                            window.location.href = "agradecimento.html";
+                        })
+                        .catch((error) => {
+                            console.error("Error sending data to Firebase!", error.message);
+                            // Display error message
+                            formContainer.innerHTML = 
+                                '<div class="alert alert-danger" role="alert">' +
+                                "<h5>Erro!</h5>" +
+                                "<p>Ocorreu um erro ao enviar suas respostas. Por favor, tente novamente mais tarde ou contate o administrador.</p>" +
+                                "<p><small>Detalhe do erro: " +
+                                error.message +
+                                "</small></p>" +
+                                "</div>";
+                            // Reabilitar botão em caso de erro, se o formulário não for substituído
+                            if (submitButton) {
+                                submitButton.disabled = false;
+                                submitButton.textContent = "Enviar Respostas"; 
+                            }
+                        });
+                });
+
+                // Initial progress update on load
+                updateProgress();
+                
+                console.log("Formulário inicializado com sucesso e conectado ao Firebase.");
+            } catch (error) {
+                console.error("Erro ao inicializar o formulário:", error);
+                alert('Ocorreu um erro ao inicializar o formulário. Por favor, recarregue a página ou contate o administrador.');
+            }
+        });
+  </script>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    // Update progress bar
+    function updateProgress(currentPage) {
+        const totalPages = 5;
+        const progress = Math.round((currentPage / totalPages) * 100);
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = progress + '%';
+        progressBar.setAttribute('aria-valuenow', progress);
+        progressBar.textContent = progress + '%';
+    }
+
+    // Validate current page before proceeding
+    function validatePage(pageId) {
+        const page = document.getElementById(pageId);
+        const inputs = page.querySelectorAll('input[required], select[required]');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (input.type === 'radio') {
+                // For radio buttons, check if any in the group is checked
+                const name = input.getAttribute('name');
+                const checked = page.querySelector(`input[name="${name}"]:checked`);
+                if (!checked) {
+                    isValid = false;
+                    // Find the parent question-item
+                    const questionItem = input.closest('.question-item');
+                    if (questionItem) {
+                        questionItem.classList.add('was-validated');
+                    }
+                }
+            } else {
+                // For other inputs like select
+                if (!input.value) {
+                    isValid = false;
+                    input.classList.add('is-invalid');
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+            }
+        });
+        
+        return isValid;
+    }
+
+    // Handle next button clicks
+    document.querySelectorAll('.next-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const currentPageId = this.closest('.page-container').id;
+            const targetPageId = this.getAttribute('data-target');
+            
+            if (validatePage(currentPageId)) {
+                document.getElementById(currentPageId).style.display = 'none';
+                document.getElementById(targetPageId).style.display = 'block';
+                
+                // Extract page number from ID (format: page-X)
+                const pageNumber = parseInt(targetPageId.split('-')[1]);
+                updateProgress(pageNumber);
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            } else {
+                alert('Por favor, responda todas as perguntas obrigatórias antes de continuar.');
+            }
+        });
+    });
+
+    // Handle previous button clicks
+    document.querySelectorAll('.prev-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const currentPageId = this.closest('.page-container').id;
+            const targetPageId = this.getAttribute('data-target');
+            
+            document.getElementById(currentPageId).style.display = 'none';
+            document.getElementById(targetPageId).style.display = 'block';
+            
+            // Extract page number from ID (format: page-X)
+            const pageNumber = parseInt(targetPageId.split('-')[1]);
+            updateProgress(pageNumber);
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+    });
+
+    // Form submission
+    document.getElementById('copsoq-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const lastPageId = 'page-5';
+        if (validatePage(lastPageId)) {
+            // Here you would normally submit the form
+            // For this example, we'll just show a success message
+            alert('Formulário enviado com sucesso!');
+            
+            // Collect all form data
+            const formData = new FormData(this);
+            
+            // Process form data here
+            // You can add your Firebase submission logic here
+            
+            // Redirect to thank you page
+            window.location.href = "agradecimento.html";
+        } else {
+            alert('Por favor, responda todas as perguntas obrigatórias antes de enviar.');
+        }
+    });
+
+    // Initialize progress bar
+    updateProgress(1);
+});
+  </script>
+ </body>
+</html>
